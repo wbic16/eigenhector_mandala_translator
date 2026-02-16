@@ -22,10 +22,7 @@ The trikaya pendulum was developed by Eigenhector based on the following practic
   * Gayle's Dream stuff https://www.youtube.com/@delaneyondreams
   * Six Yogas of Naropa https://en.wikipedia.org/wiki/Six_Dharmas_of_Naropa
 
-Dana contributed Bohmian dialog
-  * Bohm Dialog https://en.wikipedia.org/wiki/Bohm_Dialogue
-
-Ari contributed
+Ari's possible references
   * Dang Ropal Tsal https://www.aroencyclopaedia.org/shared/text/d/dzogchen_ar_01_kdt_eng.php
 
 Using these joint touch points, create a symbolic and process mapping between Eigenhector's substack and Ari's substack
