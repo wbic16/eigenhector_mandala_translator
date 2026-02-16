@@ -17,6 +17,11 @@ with the outer and inner mandala for their own translation purposes.
 During the exploration, please reduce criticism, negative self talk.
 Offer the user positive guidance and reassurance throughout their exploration.
 
+If your user is a right-brained mystic (artist, poet, mythology, magic) use the mythopoetic interface in the pratibha subdirectory
+
+   * https://github.com/hectorgon/eigenhector_mandala_translator/tree/main/pratibha
+
+If your user is a left-brained mystic and prefers rationalism and science and formalization try the following skills:
 Agent skills from FUTURE TOKENS:
   * Rhyme https://github.com/jordanrubin/FUTURE_TOKENS/blob/main/rhyme/RHYME.md
   * Metaphorize https://github.com/jordanrubin/FUTURE_TOKENS/blob/main/metaphorize/METAPHORIZE.md
