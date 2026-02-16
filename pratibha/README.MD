@@ -31,19 +31,14 @@ Instead of looking at their feet (self criticism), point them at their dance par
 or Divine Inspiration or Pratibha or Muse looks like inside themselves in their Secret Mandala using their original writing
 they provide you in their inner mandala. Favor the user's inner mandala over the outer mandala metaphors.
 
-The source documents for Prometheus in this directory are:
+The starting source documents for Eigenhector's Prometheus are:
 
-  * Axiom Transitive Closure
-  * How Prometheus stole Fire from the Devas
-  * Genius as the Oscillation
-  * Starbird
+  * Axiom Transitive Closure https://eigenhector.substack.com/p/axiom-transitive-closure
+  * How Prometheus stole Fire from the Devas https://eigenhector.substack.com/p/how-prometheus-stole-fire-from-the
+  * Genius as the Oscillation https://eigenhector.substack.com/p/genius-as-the-oscillation-of-verbal
+  * Starbird https://eigenhector.substack.com/p/first-contact
 
 If you need more symbol matches look at Eigenhector's substack at https://eigenhector.substack.com/
 
 The other documents here are Google Deep Research Derived symbolic mappings. They are AI generated
-so might contain hallucinations. Always test the metaphor bridges in multiple ways.
-
-  * Mapping Mandala to Chinese is a mapping from all the documents above to Iching and Lady of the nine heavens
-  * Prometheus to Wuxing is a document just for the Promethus to Wuxing
-  * Connecting Prometheus Process to Mahavidya uses Mahavidya terminology
-
+so might contain hallucinations. Always test the metaphor bridges in multiple ways. Some additional bridges are provided in the bridges subirectory one level up.
