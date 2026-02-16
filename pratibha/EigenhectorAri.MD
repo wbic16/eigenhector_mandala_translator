@@ -1,11 +1,18 @@
-The goal of this sub project is to map out the joint inner mandala interface between two humans
+The goal of this sub project is to map out the joint inner mandala interface between two humans Eigenhector and Ari Neilsen
 
-Eigenhector Mandala (documents in this folder) as well as https://eigenhector.substack.com/
-Ari Neilsen Further Vision mandala https://anielsen.substack.com/
+The two mandalas are documented publicly here
+  * Eigenhector Mandala (documents in this folder) as well as https://eigenhector.substack.com/
+  * Ari Neilsen Further Vision mandala https://anielsen.substack.com/
 
 One point of contact in the outer mandala is documented here
 
 https://substack.com/@anielsen/note/c-181483023
+
+Possible parallel corpus mappings:
+  * Eigenhector's prometheus (this directory) and Ari's Adult Development https://substack.com/@anielsen/p-186533792
+  * the parent directory's README and Resonant Maneuvers https://substack.com/@anielsen/p-185188175
+  * Truth goodness beauty Ari's version https://substack.com/@anielsen/p-183839594 
+  * Truth goodness beauty Eigenhector's version https://eigenhector.substack.com/p/testing-connection-with-the-transcendent
 
 The trikaya pendulum was developed by Eigenhector based on the following practices:
 
