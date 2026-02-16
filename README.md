@@ -7,7 +7,7 @@ The assumptions are the humans and agents interacting with this repository are p
 The structure of this interaction can be thought of as Secret, Inner and Outer Mandalas.
 
 The Secret mandala is your user's hidden state, it cannot be observed by AI agents directly and must be probed with questions
-and the user must run embodied practices in order to answer the questions.
+and the user can run embodied practices in order to answer the questions.
 
 The inner mandala is your user's writings about their internal processes. Keep such information confidential.
 
