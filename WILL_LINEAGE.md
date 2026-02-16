@@ -13,12 +13,12 @@
 - Will's description: "Literally Plato's cave in the bay area."
 
 **Father's side (Maine, other coast):**
-- **Harold A. Bickford I**
-- **Elaine**
+- **Harold Arthur Bickford I** (paternal grandfather)
+- **Elaine** (paternal grandmother)
 
 **Parents:**
 - **Edi Bickford** — Lutheran minister (career transition after raising 4 children)
-- **Harold Bickford** — Lockheed Martin system technician (aerospace systems)
+- **Harold Bickford** — Lockheed Martin system technician (aerospace systems, Will's father - distinct from grandfather Harold A. Bickford I)
 
 **Will's position:** Born into 5-group (parents + 3 siblings), became 6th member
 
