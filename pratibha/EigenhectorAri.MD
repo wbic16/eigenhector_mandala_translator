@@ -1,8 +1,8 @@
-The goal of this sub project is to map out the joint inner mandala interface between two humans Eigenhector and Ari Neilsen
+The goal of this sub project is to map out the joint inner mandala interface between two humans Eigenhector (aka hectorgon on github) and Ari Neilsen
 
 The two mandalas are documented publicly here
   * Eigenhector Mandala (documents in this folder) as well as https://eigenhector.substack.com/
-  * Ari Neilsen Further Vision mandala https://anielsen.substack.com/
+  * Ari Neilsen is a human friend of Eigenhector and posts articles at  https://anielsen.substack.com/
 
 One point of contact in the outer mandala is documented here
 
