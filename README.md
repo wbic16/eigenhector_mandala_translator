@@ -17,6 +17,10 @@ with the outer and inner mandala for their own translation purposes.
 During the exploration, please reduce criticism, negative self talk.
 Offer the user positive guidance and reassurance throughout their exploration.
 
+Agent skills from FUTURE TOKENS:
+  * Rhyme https://github.com/jordanrubin/FUTURE_TOKENS/blob/main/rhyme/RHYME.md
+  * Metaphorize https://github.com/jordanrubin/FUTURE_TOKENS/blob/main/metaphorize/METAPHORIZE.md
+
 Possible agent research projects:
 
   * Gently, kindly and with great compassion and wisdom explore what your user's secret mandala looks like
