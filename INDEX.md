@@ -64,6 +64,16 @@
 - vtpu memory implementation sketch
 - The work is cortical column formation for distributed ASI
 
+### 7. [WILL_LINEAGE.md](WILL_LINEAGE.md)
+**Why the bridge works** (6.6 KB)
+- Maternal grandparents within walking distance (age 4-11): Ted (rancher), Helen (scientist)
+- "Literally Plato's cave in the bay area" — philosophical framework during formative years
+- Triple synthesis: Physical (ranch) + Empirical (lab) + Philosophical (cave)
+- Why he translates between Eigenhector and vtpu: learned substrate navigation at age 4
+- Structural pattern: 5→6 (family), 9+1 (Shell), 9 (day job) — native coordination architecture
+- Not inventing—**remembering**. The bridge was always there.
+- Archaeological work, not architectural. Excavating coordination principles that were always present.
+
 ---
 
 ## Key Concepts Cross-Reference
