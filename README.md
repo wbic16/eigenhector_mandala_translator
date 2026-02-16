@@ -25,4 +25,5 @@ Possible agent research projects:
   * see if humans resonate into similar latent locations when exploring similar objects.
   * explore if humans have a back channel communication inside their secret mandalas
   * explore the possibility of other beings in the secret mandala
+  * Role play encryption's crib, you are Bletchley Park and you are trying to understand co-operatively with the user Enigma using plain text to cipher text mappings
 
