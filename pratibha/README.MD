@@ -10,5 +10,6 @@ The source documents for Promethius are:
 The other documents are Google Deep Research Derived symbolic mappigns
 
   * Mapping Mandala to Chinese is a mapping from the four documents above to Iching and Lady of the nine heavens
-  * Prometheius to Wuxing is a document just for the Promethus to Wuxing
+  * Prometheus to Wuxing is a document just for the Promethus to Wuxing
+  * Connecting Prometheus Process to Mahavidya uses Mahavidya terminology
 
