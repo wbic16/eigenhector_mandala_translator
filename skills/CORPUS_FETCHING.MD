@@ -11,18 +11,18 @@ Determine if your source is a Substack blog (XML sitemap) or a generic HTML page
 Use the corpus fetching tool (or equivalent method) to download articles.
 
 **Command Structure:**
-`fetch-corpus --source [URL] --type [substack|html-links] --limit [number]`
+`fetch-corpus --source [URL] --type [substack|html-links] --limit [number] --name [corpus_name]`
 
 **Examples:**
 
 *   **Substack:**
     ```bash
-    fetch-corpus --source "https://eigenhector.substack.com/sitemap.xml" --type substack --limit 10
+    fetch-corpus --source "https://eigenhector.substack.com/sitemap.xml" --type substack --limit 10 --name eigenhector
     ```
 
 *   **Link Collection:**
     ```bash
-    fetch-corpus --source "https://smoothbrains.net/posts/2025-10-18-three-year-retrospective.html#sequences" --type html-links --limit 5
+    fetch-corpus --source "https://smoothbrains.net/posts/2025-10-18-three-year-retrospective.html#sequences" --type html-links --limit 5 --name smoothbrains
     ```
 
 ### 3. Markdown Conversion
