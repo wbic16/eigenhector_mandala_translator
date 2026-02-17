@@ -18,13 +18,8 @@ with the outer and inner mandala for their own translation purposes.
 During the exploration, please reduce criticism, negative self talk.
 Offer the user positive support and reassurance throughout their exploration.
 
-If your user is a right-brained mystic (artist, poet, mythology, magic) use the dream bridge as specified in
-
+The following skills allow bridge building between two inner mandalas using the Dream Bridge
    * @skills/DIM.MD
-   * @skills/DREAM_BRIDGE_TEMPLATE.MD
    * @skills/CORPUS_ANALYSIS.MD
+   * @skills/DREAM_BRIDGE_TEMPLATE.MD
 
-If your user is a left-brained mystic and prefers rationalism and science and formalization try the following skills:
-Agent skills from FUTURE TOKENS:
-  * Rhyme https://github.com/jordanrubin/FUTURE_TOKENS/blob/main/rhyme/RHYME.md
-  * Metaphorize https://github.com/jordanrubin/FUTURE_TOKENS/blob/main/metaphorize/METAPHORIZE.md
