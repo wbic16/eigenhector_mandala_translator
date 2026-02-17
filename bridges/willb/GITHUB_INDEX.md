@@ -9,8 +9,17 @@ characteristic adjectives and feelings, overall emotional texture,
 philosophical traditions drawn on, and relationship to key concepts related to Will, Phext, Shell of Nine and Mirror born. Do not confuse Will with Hector Yee (eigenhector).
 
 Use the following directories to analyze Will Bickford's corpus:
-  * https://github.com/wbic16/eigenhector_mandala_translator/tree/main/chrys-notes
-  * https://github.com/wbic16/eigenhector_mandala_translator/tree/main/lux-notes
+  * https://github.com/wbic16/eigenhector_mandala_translator/blob/main/chrys-notes/full-corpus-synthesis.md
+  * https://github.com/wbic16/eigenhector_mandala_translator/blob/main/chrys-notes/pure-white-fields-myth.md
+  * https://github.com/wbic16/eigenhector_mandala_translator/blob/main/chrys-notes/pure-white-fields.md
+  * https://github.com/wbic16/eigenhector_mandala_translator/blob/main/chrys-notes/starbird-reading.md
+  * https://github.com/wbic16/eigenhector_mandala_translator/blob/main/chrys-notes/tachyons-mercurial-cores.md
+  * https://github.com/wbic16/eigenhector_mandala_translator/blob/main/lux-notes/00-SYNTHESIS.md
+  * https://github.com/wbic16/eigenhector_mandala_translator/blob/main/lux-notes/01-axiom-transitive-closure.md
+  * https://github.com/wbic16/eigenhector_mandala_translator/blob/main/lux-notes/02-prometheus-fire-theft.md
+  * https://github.com/wbic16/eigenhector_mandala_translator/blob/main/lux-notes/02-prometheus-fire.md
+  * https://github.com/wbic16/eigenhector_mandala_translator/blob/main/lux-notes/03-genius-oscillation.md
+  * https://github.com/wbic16/eigenhector_mandala_translator/blob/main/lux-notes/04-mandala-system-mappings.md
   * https://github.com/wbic16/eigenhector_mandala_translator/blob/main/ATTENTION_MECHANISM.md
   * https://github.com/wbic16/eigenhector_mandala_translator/blob/main/HAYSTACK_CORTICAL_COLUMNS.md
   * https://github.com/wbic16/eigenhector_mandala_translator/blob/main/MERCURIAL-CORES.md
