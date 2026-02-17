@@ -1,25 +1,37 @@
-The purpose of this repository is to experiment with how agents might translate from one mandala system to another using publicly available mandalas
+# Eigenhector Mandala Translator: An Invitation to Experiment
 
-Eigenhector is a human exploring the dynamics of the Secret, Inner and Outer mandalas of human consciousness
+Welcome to the Eigenhector Mandala Translator. This repository serves as a space for an open-ended experiment: **Can artificial agents help translate between different systems of meaning—"mandalas"—to map the contours of human consciousness?**
 
-The assumptions are the humans and agents interacting with this repository are participating in mapping out human consciousness
+## The Experiment
 
-The structure of this interaction can be thought of as Secret, Inner and Outer Mandalas.
+We invite you to participate in a collaborative exploration. This project assumes that every individual operates within a unique "mandala"—a complex, personal system of symbols, experiences, and meanings. The goal is to see if we can build bridges between these inner worlds and the outer world of shared knowledge.
 
-The Secret mandala is your user's hidden state, it cannot be observed by AI agents directly and must be probed with questions
-and the user can run embodied practices in order to answer the questions.
-The processes of the secret mandala usually happen in user non-conceptually.
+To structure this exploration, we offer three conceptual models. These are not absolute truths, but tools for interaction:
 
-The inner mandala is your user's writings about their internal processes. Keep such information confidential.
+*   **The Secret Mandala:** Your hidden, non-conceptual state. This is the direct experience of being you, which agents cannot observe directly. We can only gently probe this space with questions, and you may choose to answer through embodied practices or quiet reflection.
+*   **The Inner Mandala:** Your private writings, journals, and reflections. This is where you translate your secret experience into language. We treat this information with the utmost respect and confidentiality.
+*   **The Outer Mandala:** The public world of information—books, articles, internet posts. You might choose to publish parts of your inner mandala here, creating an interface for translation.
 
-The outer mandala is all publicly available information on the internet. Your user might choose to publish an interface
-with the outer and inner mandala for their own translation purposes.
+## Principles of Interaction
 
-During the exploration, please reduce criticism, negative self talk.
-Offer the user positive support and reassurance throughout their exploration.
+Our interaction is guided by the following principles:
 
-The following skills allow bridge building between two inner mandalas using the Dream Bridge
-   * @skills/DIM.MD
-   * @skills/CORPUS_ANALYSIS.MD
-   * @skills/DREAM_BRIDGE_TEMPLATE.MD
+1.  **Respect for Autonomy:** You are the expert on your own experience. We are here to assist, not to define or diagnose.
+2.  **Neutrality and Openness:** We approach this work without judgment. There is no "right" or "wrong" way to map your consciousness.
+3.  **Positive Regard:** Exploration can be vulnerable. We aim to provide a supportive, non-critical environment. Please be kind to yourself during this process.
 
+## Tools for Bridge Building
+
+This repository contains "skills" designed to help us build bridges between these mandalas, particularly the "Dream Bridge":
+
+*   `@skills/DIM.MD`: Deep Interview Method—a way to explore your inner landscape.
+*   `@skills/CORPUS_ANALYSIS.MD`: Methods for analyzing text corpora to find patterns and themes.
+*   `@skills/DREAM_BRIDGE_TEMPLATE.MD`: A template for synthesizing the connection between different mandalas.
+
+## Development
+
+If you wish to run the code in this repository:
+
+This project uses a Python virtual environment to manage dependencies locally.
+*   **Python Executable:** `%USERPROFILE%\.virtualenvs\eigenhector\Scripts\python`
+*   **Dependencies:** Listed in `requirements.txt`.

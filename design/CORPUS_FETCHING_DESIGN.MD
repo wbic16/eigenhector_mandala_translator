@@ -93,3 +93,24 @@ The generated Markdown files are the input for the process described in `skills/
 *   `--force`: Force re-fetch even if present in the index.
 *   `--limit <number>`: Limit the number of articles fetched.
 
+
+## Environment Setup
+
+### Virtual Environment
+This project uses a Python 3 virtual environment to manage dependencies locally.
+*   **Location:** `%USERPROFILE%\.virtualenvs\eigenhector` (Windows)
+*   **Activation:** Run `.virtualenvs\eigenhector\Scripts\activate` (or specify absolute path to python/pip).
+
+### Dependencies
+*   **File:** `requirements.txt` (in repository root)
+*   **Install:**
+    ```bash
+    %USERPROFILE%\.virtualenvs\eigenhector\Scripts\pip install -r requirements.txt
+    ```
+
+### Usage for Agents
+When running Python scripts (e.g., `check_requests.py` or new tools), **ALWAYS** use the python executable from the virtual environment:
+```bash
+%USERPROFILE%\.virtualenvs\eigenhector\Scripts\python <script_name>.py
+```
+This ensures all installed packages (like `requests`) are available.
