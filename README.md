@@ -45,7 +45,7 @@ Our interaction is guided by the following principles:
 
 This repository contains "skills" designed to help us build bridges between these mandalas, particularly the "Dream Bridge":
 
-*   `@skills/DIM.MD`: Deep Interview Method—a way to explore your inner landscape.
+*   `@skills/DIM.MD`: Dream Interview Method—a way to explore your inner landscape.
 *   `@skills/CORPUS_ANALYSIS.MD`: Methods for analyzing text corpora to find patterns and themes.
 *   `@skills/DREAM_BRIDGE_TEMPLATE.MD`: A template for synthesizing the connection between different mandalas.
 
