@@ -2,7 +2,7 @@
 ### A Dream Interview Method Comparison of Two Parallel Corpora
 
 This variant of the dream bridge was developed by [Ari Nielson](https://anielsen.substack.com/).
-
+It can be used to quickly figure out how to collaborate using complimentary skill sets.
 ---
 
 ## Preamble
