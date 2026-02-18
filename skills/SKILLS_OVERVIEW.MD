@@ -1,0 +1,50 @@
+# Skills Overview: Agent Capabilities
+
+This document provides a high-level overview of the skills and tools available for agents within the `eigenhector_mandala_translator` repository. These capabilities are designed to facilitate the collection, analysis, and comparison of mystic text corpora.
+
+## The Pipeline
+
+The system follows a structured pipeline for processing mystical texts:
+
+1.  **Fetching**: Acquiring text content from online sources (e.g., Substack).
+2.  **Structuring**: Organizing fetched content into a standardized local file hierarchy.
+3.  **Analyzing**: Extracting metaphors, themes, and structural dimensions from the corpus.
+4.  **Bridging**: Comparing metaphors across different corpora using the Dream Interview Method (DIM).
+
+---
+
+## 1. Corpus Management Skills
+
+These skills handle the initial acquisition and organization of data.
+
+*   **[Adding Corpus Users](ADD_CORPUS_USER.MD)**: How to register user aliases and source URLs in the registry.
+*   **[Listing Corpus Users](LIST_CORPUS_USERS.MD)**: Procedure for viewing all registered users and their sources.
+*   **[Corpus Fetching](CORPUS_FETCHING.MD)**: Instructions for downloading content using the fetching tools.
+*   **[Corpus Structure](CORPUS_STRUCTURE.MD)**: Defines the directory hierarchy (`index.json` and `docs/`) used for storage.
+
+## 2. Analysis Skills
+
+These skills focus on extracting meaningful insights from a single corpus.
+
+*   **[Corpus Analysis](CORPUS_ANALYSIS.MD)**: Guidelines for identifying recurring metaphors, emotional textures, and structural dimensions.
+*   **[Analysis JSON Template](ANALYSIS_JSON_TEMPLATE.json)**: The machine-readable schema for analysis output, required for downstream bridging.
+
+## 3. Comparison Skills (The Dream Bridge)
+
+These skills enable the comparison of different mystical perspectives.
+
+*   **[Dream Interview Method (DIM)](DreamBridge/DIM.MD)**: The core methodology for interpreting metaphors as "dream images" using a Martian perspective.
+*   **[Dream Bridge Template](ARI_DREAM_BRIDGE_TEMPLATE.MD)**: A structured template for documenting the comparison and synthesis of two parallel corpora.
+
+---
+
+## Supporting Tools
+
+The following Python tools support the execution of these skills:
+
+| Tool | Purpose |
+| :--- | :--- |
+| `fetch_corpus.py` | Downloads content and converts it to structured Markdown files. |
+| `list_users.py` | Displays the current corpus registry. |
+| `verify_corpus.py` | Validates the integrity and completeness of a fetched corpus. |
+| `validate_analysis_json.py` | Ensures analysis results strictly follow the required JSON schema. |
