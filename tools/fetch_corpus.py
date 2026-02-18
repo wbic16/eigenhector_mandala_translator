@@ -150,6 +150,11 @@ class CorpusFetcher:
             if self.manager.is_fetched(loc):
                 print(f"Skipping already fetched: {loc}")
                 continue
+
+            # Filter for Substack posts (usually contain /p/)
+            if '/p/' not in loc:
+                print(f"Skipping non-post URL: {loc}")
+                continue
                 
             # Basic validation to skip non-post pages if possible or fetch and check
             # For sitemaps, usually all LOCs are posts/pages.

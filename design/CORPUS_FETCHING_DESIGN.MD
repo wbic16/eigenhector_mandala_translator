@@ -7,6 +7,7 @@ This document outlines the design for a tool to fetch and preprocess text articl
 
 1.  **Source Handling:**
     *   **Substack XML sitemaps:** e.g., `https://eigenhector.substack.com/sitemap.xml`
+        *   **Filtering:** Only fetch URLs matching specific patterns (e.g., `/p/` for posts) to avoid fetching non-article pages.
     *   **Link Collection Pages:** e.g., `https://example.com/posts/` (Fetches `.md` files linked from the page)
     *   **GitHub Repositories:** e.g., `https://github.com/wbic16/eigenhector_mandala_translator/` (Fetches `.md` files)
 
@@ -29,6 +30,7 @@ This document outlines the design for a tool to fetch and preprocess text articl
 **Command:**
 ```bash
 fetch-corpus --source "https://eigenhector.substack.com/sitemap.xml" --type substack --limit 10 --name eigenhector
+# Automatically filters for /p/ links by default for Substack type
 # Stores in ~/Documents/mystic_corpus/eigenhector/
 ```
 
