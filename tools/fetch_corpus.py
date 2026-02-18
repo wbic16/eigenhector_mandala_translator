@@ -310,24 +310,55 @@ class CorpusFetcher:
             print(f"Error parsing {url}: {e}")
             return False
 
+def load_registry(storage_root=None):
+    if storage_root:
+        base_dir = storage_root
+    else:
+        if os.name == 'nt':
+            base_dir = os.path.join(os.environ['USERPROFILE'], 'Documents', 'mystic_corpus')
+        else:
+            base_dir = os.path.join(os.path.expanduser('~'), 'Documents', 'mystic_corpus')
+            
+    registry_path = os.path.join(base_dir, 'corpus_registry.json')
+    if os.path.exists(registry_path):
+        with open(registry_path, 'r', encoding='utf-8') as f:
+            return json.load(f)
+    return {}
+
 def main():
     parser = argparse.ArgumentParser(description="Fetch and process text corpora.")
-    parser.add_argument('--source', required=True, help="Source URL (sitemap, page, or repo)")
-    parser.add_argument('--type', required=True, choices=['substack', 'html-links', 'github'], help="Type of source")
+    parser.add_argument('--source', help="Source URL (sitemap, page, or repo)")
+    parser.add_argument('--type', choices=['substack', 'html-links', 'github'], help="Type of source")
     parser.add_argument('--limit', type=int, help="Limit number of items to fetch")
-    parser.add_argument('--name', required=True, help="Name of the corpus")
+    parser.add_argument('--name', help="Name of the corpus")
+    parser.add_argument('--user', help="User alias from corpus_registry.json")
     parser.add_argument('--storage-root', help="Override default storage root")
     parser.add_argument('--force', action='store_true', help="Force re-fetch")
     
     args = parser.parse_args()
     
+    # Handle user alias
+    if args.user:
+        registry = load_registry(args.storage_root)
+        if args.user not in registry:
+            print(f"Error: User '{args.user}' not found in registry.")
+            return
+            
+        entry = registry[args.user]
+        args.source = entry['url']
+        args.type = entry['type']
+        # Use alias as corpus name by default if not provided, or maybe separate name in registry?
+        # For now, alias seems appropriate as the corpus name.
+        if not args.name:
+            args.name = args.user
+            
+        print(f"Loaded config for user '{args.user}': Source={args.source}, Type={args.type}")
+
+    # Validation
+    if not args.source or not args.type or not args.name:
+        parser.error("The following arguments are required: --source, --type, --name (or use --user)")
+    
     manager = CorpusManager(args.name, args.storage_root)
-    # If force, maybe clear index for specific URLs? 
-    # Current implementation check is_fetched inside fetcher.
-    # To support update, we might need to modify is_fetched to respect force flag or handle it in loop.
-    # Updated: check force in loop or pass to fetcher.
-    # Simple way: If force, clear the index in memory? No, that would duplicate entries.
-    # If force, is_fetched should always return False.
     
     if args.force:
         # Monkey patch for this run
