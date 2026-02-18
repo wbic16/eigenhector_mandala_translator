@@ -1,6 +1,8 @@
 # Dream Bridge
 ### A Method for Comparing Metaphors Across Parallel Corpora
 
+Original: [The Dream Interview Method (DIM)](https://delaneyondreams.com/delaneys-dream-interview-method/) by Dr Gayle Delaney.
+
 This guide adapts the **Dream Interview Method (DIM)**—a technique originally designed to interpret dreams by stripping away assumptions—for the purpose of analyzing and comparing metaphors between two parallel corpora of texts (Corpus A and Corpus B). By treating text segments as "dream images" and the analyst as a "Martian" interviewer, this method reveals the unique, culturally specific meanings behind metaphors that might otherwise appear identical on the surface.
 
 ---

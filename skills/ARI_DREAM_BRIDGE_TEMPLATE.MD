@@ -1,6 +1,8 @@
 # Dream Bridge: [Corpus A Name] and [Corpus B Name]
 ### A Dream Interview Method Comparison of Two Parallel Corpora
 
+This variant of the dream bridge was developed by [Ari Nielson](https://anielsen.substack.com/).
+
 ---
 
 ## Preamble
