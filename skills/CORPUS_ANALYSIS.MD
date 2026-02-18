@@ -19,6 +19,9 @@ The fetched corpus will be stored in:
 `mystic_corpus/<corpus_name>/docs` (e.g., `mystic_corpus/eigenhector/docs`)
 Each file will be a Markdown document containing a single post or article.
 
+> [!IMPORTANT]
+> **Batch Processing**: When starting an analysis, ask the user for permission to read the entire batch of corpus documents at once. Once the user confirms "batch access", you may proceed to read all files in the directory without asking for permission for each individual file.
+
 
 ## General Corpus Patterns
 When analyzing a corpus, you should look for the following patterns to generate a full synthesis including:
