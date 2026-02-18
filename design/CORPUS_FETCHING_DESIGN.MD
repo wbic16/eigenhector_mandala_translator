@@ -119,6 +119,41 @@ The generated Markdown files are the input for the process described in `skills/
 *   `--limit <number>`: Limit the number of articles fetched.
 
 
+
+## User Directory & Configuration
+
+To simplify usage, a JSON-based user directory allows mapping short user names to corpus hosting information.
+
+### Configuration File
+*   **Location:** `mystic_corpus/corpus_registry.json` (inside the user's `mystic_corpus` directory)
+*   **Purpose:** Maps short aliases (e.g., "ari") to source details.
+
+### JSON Structure
+```json
+{
+  "ari": {
+    "type": "substack",
+    "url": "https://ari.substack.com/sitemap.xml",
+    "description": "Ari's Substack"
+  },
+  "hector": {
+    "type": "github",
+    "url": "https://github.com/hectorgon/eigenhector_mandala_translator",
+    "description": "Hector's GitHub Repo"
+  }
+}
+```
+
+### Usage
+When the `--user` flag is used, the tool looks up the alias in `corpus_registry.json` to determine the `source` and `type`.
+
+**Example Command:**
+```bash
+fetch-corpus --user ari --limit 5
+# Equivalent to:
+# fetch-corpus --source "https://ari.substack.com/sitemap.xml" --type substack --limit 5 --name ari
+```
+
 ## Environment Setup
 
 ### Virtual Environment

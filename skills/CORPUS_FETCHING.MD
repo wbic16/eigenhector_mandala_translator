@@ -13,6 +13,10 @@ Use the corpus fetching tool (or equivalent method) to download articles.
 **Command Structure:**
 `fetch-corpus --source [URL] --type [substack|html-links] --limit [number] --name [corpus_name]`
 
+**Alternative (Using Corpus Registry):**
+`fetch-corpus --user [alias] --limit [number]`
+*(See **@[skills/ADD_CORPUS_USER.MD]** for setup)*
+
 **Examples:**
 
 *   **Substack:**
