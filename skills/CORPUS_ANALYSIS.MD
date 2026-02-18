@@ -1,5 +1,7 @@
 # Corpus Analysis Guidelines
 
+This corpus skill can be used to quickily understand how a mystic talks about different subjects.
+
 ## Corpus Acquisition
 
 Before starting analysis, ensure you have the target corpus available.
