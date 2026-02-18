@@ -2,6 +2,10 @@
 
 This corpus skill can be used to quickily understand how a mystic talks about different subjects.
 
+## Corpus Structure
+
+Read the corpus structure document for more information: **@[skills/CORPUS_STRUCTURE.MD]**
+
 ## Corpus Acquisition
 
 Before starting analysis, ensure you have the target corpus available.
@@ -79,7 +83,11 @@ In addition to metaphor analysis, compare the corpora along these structural dim
 
 ## Output Standards
 
-To ensure the analysis is both human-readable and machine-processable for downstream tasks (like the Dream Bridge), you must generate **two** output files for every analysis.
+All analysis artifacts must be saved in the dedicated analysis directory:
+`mystic_corpus/<corpus_name>/analysis/`
+(e.g., `mystic_corpus/eigenhector/analysis/`)
+
+To ensure the analysis is both human-readable and machine-processable for downstream tasks (like the Dream Bridge), you must generate **two** output files for every analysis within this directory.
 
 ### 1. Human-Readable Output (HTML)
 **Purpose:** For human review and simplified reading.
