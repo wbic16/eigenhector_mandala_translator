@@ -1,5 +1,28 @@
 # Corpus Analysis Guidelines
 
+## Corpus Acquisition
+
+Before starting analysis, ensure you have the target corpus available.
+
+1.  **Fetch Content:** Use the **@[skills/CORPUS_FETCHING.MD]** skill to download the corpus.
+    -   Example: `fetch-corpus --source "https://example.com/sitemap.xml" --type substack --name example_corpus`
+
+2.  **User Shortcuts:** If analyzing a known user, check **@[skills/ADD_CORPUS_USER.MD]** for aliases.
+    -   Example: `fetch-corpus --user ari --limit 10`
+
+3.  **Verify Integrity:** Run the verification tool to ensure the corpus is complete and valid.
+    -   Command: `python tools/verify_corpus.py --name <corpus_name>`
+    -   Example: `python tools/verify_corpus.py --name eigenhector`
+
+### Corpus Location
+The fetched corpus will be stored in:
+`mystic_corpus/<corpus_name>/docs` (e.g., `mystic_corpus/eigenhector/docs`)
+Each file will be a Markdown document containing a single post or article.
+
+> [!IMPORTANT]
+> **Batch Processing**: When starting an analysis, ask the user for permission to read the entire batch of corpus documents at once. Once the user confirms "batch access", you may proceed to read all files in the directory without asking for permission for each individual file.
+
+
 ## General Corpus Patterns
 When analyzing a corpus, you should look for the following patterns to generate a full synthesis including:
 
@@ -17,7 +40,7 @@ When analyzing a corpus, you should look for the following patterns to generate 
 
 ## Dream Bridge Analysis Method (DIM)
 
-The Dream Interview Method (DIM) is a specific technique for comparing metaphors across parallel corpora. It treats text segments as "dream images" to reveal unique, culturally specific meanings.
+The Dream Interview Method (DIM) is a specific technique for comparing metaphors across parallel corpora. It accepts the **structured JSON analysis** of two target corpora as input and synthesizes them. It treats text segments as "dream images" to reveal unique, culturally specific meanings.
 
 ### Phase 1: The Setup (Martian Perspective)
 Adopt the persona of a **Martian Interviewer** who knows nothing about Earth customs or symbols. Prevent projecting your own definitions onto the text. Elicit meaning entirely from the text's own descriptions.
@@ -52,7 +75,32 @@ In addition to metaphor analysis, compare the corpora along these structural dim
 4.  **Relationship to the Reader:** Teacher, friend, oracle, diarist, etc.
 5.  **Core Verb:** One word that captures the central activity of the corpus.
 
-## Output Instructions
+## Output Standards
 
-When collecting this analysis, formatted output is required.
-Refer to `skills/DREAM_BRIDGE_TEMPLATE.MD` for the exact expected output structure.
+To ensure the analysis is both human-readable and machine-processable for downstream tasks (like the Dream Bridge), you must generate **two** output files for every analysis.
+
+### 1. Human-Readable Output (HTML)
+**Purpose:** For human review and simplified reading.
+**Location:** `mystic_corpus/<corpus_name>/analysis/<corpus_name>_analysis_<YYYYMMDD>.html`
+**Format:**
+-   **Structure:** Standard HTML5.
+-   **Style:** Clean, minimal CSS (e.g., sans-serif fonts, clear headers, distinct sections for metaphors).
+-   **Content:**
+    -   **Metadata Header:** Corpus name, author, date.
+    -   **Executive Summary:** High-level synthesis.
+    -   **Metaphors Section:** Each metaphor clearly displayed with its description, recapitulation, and bridge.
+    -   **Structural Dimensions:** Formatted as a readable list or table.
+    -   **Key Concepts:** Definitions list.
+    -   **Evolution of Ideas:** Narrative text.
+
+### 2. Machine-Readable Output (JSON)
+**Purpose:** To serve as input for `skills/DREAM_BRIDGE_TEMPLATE.MD` and other agentic tasks.
+**Location:** `mystic_corpus/<corpus_name>/analysis/<corpus_name>_analysis_<YYYYMMDD>.json`
+**Format:**
+-   **Strict Schema:** Must strictly follow the structure defined in `skills/ANALYSIS_JSON_TEMPLATE.json`.
+-   **Fields Required:**
+    -   `corpus_metadata` (including `local_corpus_path`)
+    -   `major_recurring_metaphors` (Array of objects, must include `occurrences` list with quotes and `source_document` paths)
+    -   `structural_dimensions`
+    -   `key_concepts` (Array of objects, must include `occurrences` list with `source_document` paths)
+    -   `evolution_of_ideas`

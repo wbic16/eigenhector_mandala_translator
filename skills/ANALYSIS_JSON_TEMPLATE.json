@@ -1,0 +1,45 @@
+{
+    "corpus_metadata": {
+        "corpus_name": "example_corpus",
+        "author": "Author Name",
+        "analysis_date": "YYYY-MM-DD",
+        "agent_version": "Agent Name/Version",
+        "source_url": "https://example.com",
+        "local_corpus_path": "mystic_corpus/example_corpus/docs"
+    },
+    "executive_summary": "High-level synthesis of the corpus, its main themes, and unique qualities.",
+    "major_recurring_metaphors": [
+        {
+            "keyword": "Metaphor Keyword (e.g., The Forest)",
+            "description": "Martian Description: What is it like? (Adjectives, sensory details)",
+            "recapitulation": "Mirroring: Summary using only the text's exact words.",
+            "bridge": "Contextualization: Connection to broader reality or argument.",
+            "occurrences": [
+                {
+                    "quote": "Direct quote from the text.",
+                    "source_document": "mystic_corpus/corpus_name/docs/filename.md"
+                }
+            ]
+        }
+    ],
+    "structural_dimensions": {
+        "rhetorical_mode": "Style, tone, genre, typical references.",
+        "emotional_register": "Dominant mood, feeling-tone, emotional signature.",
+        "direction_of_attention": "Inward/Outward, Up/Down, Micro/Macro.",
+        "relationship_to_reader": "Teacher, friend, oracle, diarist, etc.",
+        "core_verb": "One word that captures the central activity."
+    },
+    "key_concepts": [
+        {
+            "term": "Concept Term",
+            "definition": "Definition based on usage in the corpus.",
+            "occurrences": [
+                {
+                    "source_document": "mystic_corpus/corpus_name/docs/filename.md"
+                }
+            ]
+        }
+    ],
+    "evolution_of_ideas": "Description of how ideas change or develop over the course of the corpus.",
+    "martian_interviewer_assessment": "Final assessment from the Martian Interviewer persona."
+}
