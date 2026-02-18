@@ -37,4 +37,6 @@ Ensure all fetched content is converted to Markdown format. This is critical for
 *   Body content in standard Markdown.
 
 ### 4. Integration with Analysis
-Once the corpus is fetched and converted to Markdown, proceed to **@[skills/CORPUS_ANALYSIS.MD]**. The analysis tools and prompts are designed to ingest this specific Markdown format.
+Once the corpus is fetched and converted to Markdown, it is stored according to the structure defined in **@[skills/CORPUS_STRUCTURE.MD]**.
+
+Proceed to **@[skills/CORPUS_ANALYSIS.MD]** for analysis. The analysis tools are designed to ingest this specific structure and Markdown format.

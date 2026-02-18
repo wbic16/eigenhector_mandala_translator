@@ -6,8 +6,13 @@ Before starting analysis, ensure you have the target corpus available.
 
 1.  **Fetch Content:** Use the **@[skills/CORPUS_FETCHING.MD]** skill to download the corpus.
     -   Example: `fetch-corpus --source "https://example.com/sitemap.xml" --type substack --name example_corpus`
+
 2.  **User Shortcuts:** If analyzing a known user, check **@[skills/ADD_CORPUS_USER.MD]** for aliases.
     -   Example: `fetch-corpus --user ari --limit 10`
+
+3.  **Verify Integrity:** Run the verification tool to ensure the corpus is complete and valid.
+    -   Command: `python tools/verify_corpus.py --name <corpus_name>`
+    -   Example: `python tools/verify_corpus.py --name eigenhector`
 
 ### Corpus Location
 The fetched corpus will be stored in:
