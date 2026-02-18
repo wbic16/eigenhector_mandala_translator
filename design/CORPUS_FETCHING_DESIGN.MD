@@ -7,7 +7,7 @@ This document outlines the design for a tool to fetch and preprocess text articl
 
 1.  **Source Handling:**
     *   **Substack XML sitemaps:** e.g., `https://eigenhector.substack.com/sitemap.xml`
-    *   **Link Collection Pages:** e.g., `https://smoothbrains.net/posts/2025-10-18-three-year-retrospective.html#sequences`
+    *   **Link Collection Pages:** e.g., `https://example.com/posts/` (Fetches `.md` files linked from the page)
     *   **GitHub Repositories:** e.g., `https://github.com/wbic16/eigenhector_mandala_translator/` (Fetches `.md` files)
 
 2.  **Content Processing:**
@@ -33,12 +33,13 @@ fetch-corpus --source "https://eigenhector.substack.com/sitemap.xml" --type subs
 ```
 
 ### Link Collection Example
-**Target:** `https://smoothbrains.net/posts/2025-10-18-three-year-retrospective.html#sequences`
+**Target:** `https://smoothbrains.net/posts/index.html` (containing links to `.md` files)
 
 **Command:**
 ```bash
-fetch-corpus --source "https://smoothbrains.net/posts/2025-10-18-three-year-retrospective.html#sequences" --type html-links --limit 5 --name smoothbrains
+fetch-corpus --source "https://smoothbrains.net/posts/index.html" --type html-links --limit 5 --name smoothbrains
 # Stores in ~/Documents/mystic_corpus/smoothbrains/
+# Fetches only .md files
 ```
 
 ### GitHub Repository Example
@@ -55,6 +56,7 @@ fetch-corpus --source "https://github.com/wbic16/eigenhector_mandala_translator"
 Each fetched article should be saved as a separate Markdown file.
 
 **File format:**
+Files are named with a 5-digit index (e.g., `00001.md`). The mapping between the ID and the original metadata is stored in `index.json`.
 ```markdown
 ---
 title: [Article Title]
@@ -70,6 +72,27 @@ url: [Original URL]
 ## Integration with Corpus Analysis
 The generated Markdown files are the input for the process described in `skills/CORPUS_ANALYSIS.MD`. The analysis tools expect clean Markdown with metadata headers.
 
+## Security & Safety
+
+### Injection Attack Prevention
+*   **Filename Generation:** Strict 5-digit numeric filenames (e.g., `00001.md`) are used to prevent filesystem injection attacks. The original title is stored in metadata, not the filename.
+*   **URL Validation:**
+    *   Ensure URLs use `http` or `https` schemes.
+    *   Validate domains against expected sources if possible (e.g., only `substack.com` subdomains for substack type).
+*   **Content Sanitization:**
+    *   **HTML:** Strip `<script>`, `<object>`, `<embed>`, `<iframe>`, and `style` tags before conversion to Markdown.
+    *   **Markdown:** Maintain standard Markdown syntax but be wary of raw HTML embedding.
+
+### User Data Safety
+*   **Size Limits:**
+    *   **Max File Size:** Enforce a hard limit (e.g., 10MB) on individual article downloads to prevent memory exhaustion or disk filling.
+    *   **MIME Type Check:** Verify `Content-Type` headers before downloading large bodies (text/html, application/xml, text/plain only).
+*   **Network Safety:**
+    *   **Timeouts:** Enforce connection and read timeouts (e.g., 10 seconds) on all requests to prevent hanging processes.
+    *   **Retries:** limited retries with exponential backoff for transient errors.
+*   **Rate Limiting:**
+    *   Implement delays between requests (e.g., 1 second) to be a polite crawler and avoid IP bans.
+
 ## Storage & Deduplication
 
 ### Default Storage Location
@@ -79,8 +102,8 @@ The generated Markdown files are the input for the process described in `skills/
 *   **Structure:**
     *   `mystic_corpus/`
         *   `<corpus_name>/` (Subdirectory for the specific corpus)
-            *   `docs/` (Actual markdown files)
-            *   `index.json` (Index of fetched documents)
+            *   `docs/` (Actual markdown files, named `00001.md`, `00002.md`, etc.)
+            *   `index.json` (Index of fetched documents, mapping IDs to metadata)
 
 ### Deduplication
 *   **Index File:** Verify against `index.json` in the corpus directory before fetching.
@@ -109,8 +132,24 @@ This project uses a Python 3 virtual environment to manage dependencies locally.
     ```
 
 ### Usage for Agents
-When running Python scripts (e.g., `check_requests.py` or new tools), **ALWAYS** use the python executable from the virtual environment:
-```bash
+
+When running Python scripts (e.g., `check_requests.py` or new tools), **ALWAYS** use the python executable from the virtual environment.
+
+#### Windows
+**Command Prompt (cmd):**
+```cmd
 %USERPROFILE%\.virtualenvs\eigenhector\Scripts\python <script_name>.py
 ```
+
+**PowerShell:**
+```powershell
+& "$env:USERPROFILE\.virtualenvs\eigenhector\Scripts\python" <script_name>.py
+```
+
+#### Linux / macOS
+```bash
+# Standard location
+~/.virtualenvs/eigenhector/bin/python <script_name>.py
+```
+
 This ensures all installed packages (like `requests`) are available.
