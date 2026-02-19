@@ -36,6 +36,8 @@ We need to pre-index the corpus to support high-recall, context-rich queries wit
 - **Workspace**:
     - **Working Directory**: Perform all experiments locally in `C:\Users\hecto\Projects\experiments\nlp_indexing\`.
     - **Isolation**: Create a new Python virtual environment/workspace here to avoid polluting the main repository.
+    - **Permissions**:
+        - Ask for the required batch access to the corpus and experiment directories and tool permissions before any run.
 - **Output & Iteration**:
     - **Incremental Experimentation**: Agents should feel free to run multiple small experiments to test different hypotheses or tools.
     - **Reporting**: Write detailed results of your specific run to `C:\Users\hecto\Projects\experiments\nlp_indexing\RUN_X.MD` where `X` is an incrementing number (e.g., `RUN_1`, `RUN_2`).
