@@ -36,12 +36,41 @@ We need to pre-index the corpus to support high-recall, context-rich queries wit
 - **Workspace**:
     - Use `C:\tmp` for scratch space.
     - Create a new Python virtual environment to avoid polluting the repo.
-- **Output**:
-    - Write experiment results to `reports\NLP_INDEXING_EXPERIMENTS1.MD`.
-    - **Deliverable**: A comparison of "Regex vs Embedding" for Sense Gate extraction.
-    - **Deliverable**: Recommendations/Proto-code for entity extraction based on *roles* (e.g. "The Protector", "The Guide") rather than just names.
-    - **Deliverable**: A proposal for visualizing the "Graph Projection" (how to show connections between beings and metaphors).
-    - Please report any design recommendations you have for improving the system. For example, you might recommend adding new indices (e.g. `processes.json`) or changing the way existing indices are organized.
+- **Output & Iteration**:
+    - **Incremental Experimentation**: Agents should feel free to run multiple small experiments to test different hypotheses or tools.
+    - **Reporting**: Write detailed results of your specific run to `reports\nlp_indexing\RUN_X.MD` where `X` is an incrementing number (e.g., `RUN_1`, `RUN_2`).
+    
+    - **Standardized Logging for Continuity (CRITICAL)**:
+        - You MUST maintain a running log of findings in `reports\nlp_indexing\EXPERIMENTS_LOG.MD`.
+        - **Read First**: Before starting any experiment, read `reports\nlp_indexing\EXPERIMENTS_LOG.MD` to see what has already been tried and what the recommended "Next Steps" are.
+        - **Log Format**: Append a new entry for your experiment using this format:
+            ```markdown
+            ## Experiment [ID]: [Title]
+            **Date**: [YYYY-MM-DD]
+            **Goal**: [Brief goal]
+            
+            ### Key Findings
+            - [Finding 1]
+            - [Finding 2]
+            
+            ### Artifacts & Resources (Context Recovery)
+            - [Path to reused embeddings/indices/data] (Crucial for next agent to know what exists so they don't recompute)
+            
+            ### Validated Hypotheses
+            - [ ] Hypothesis A (Confirmed/Refuted)
+            
+            ### Recommended Next Steps for Next Agent
+            - [Specific instruction for the next agent]
+            ```
+        - **Recovering Context**: If you generate expensive data (like embeddings or a large index), DO NOT delete it. Save it to `reports/nlp_indexing/artifacts/` and note its location in the `EXPERIMENTS_LOG.MD` so the next agent can load it instead of re-computing.
+
+    - **Deliverables**:
+        - Explore and compare "Regex vs Embedding" for Sense Gate extraction, documenting pros and cons.
+        - Explore methods for entity extraction based on *roles* (e.g. "The Protector", "The Guide") rather than just names.
+        - Explore and propose ways to visualize the "Graph Projection" (connections between beings and metaphors).
+        - **Flexible Exploration**: You are encouraged to follow interesting threads and deviations if they promise better insights into the core goal of "Martian Interviewer" support.
+    
+    - **Iterative Process Improvements**: Suggest improvements to the codebase or tooling that would make *future* iterative experimentation more efficient (e.g. a standard evaluation harness, automated metric calculation, or better corpus sampling tools).
 
 ## Target Queries (Use Cases)
 
