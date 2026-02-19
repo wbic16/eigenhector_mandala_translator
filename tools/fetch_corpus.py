@@ -1,4 +1,5 @@
 import os
+import time
 import argparse
 import requests
 import json
@@ -113,6 +114,7 @@ class CorpusFetcher:
         self.manager = manager
 
     def fetch_url(self, url, timeout=10, max_size=10*1024*1024):
+        time.sleep(2)
         try:
             # Stream response to check size
             with requests.get(url, headers={'User-Agent': 'Mozilla/5.0'}, timeout=timeout, stream=True) as response:
@@ -237,6 +239,7 @@ class CorpusFetcher:
             return current_count
 
         try:
+            time.sleep(2)
             response = requests.get(api_url, headers={'User-Agent': 'CorpusFetcher'})
             if response.status_code != 200:
                 print(f"Error accessing GitHub API: {response.status_code}")
