@@ -1,34 +1,56 @@
-The goal of this prompt is to run experiments to determine the best combination of tools and techniques for indexing and analyzing the corpus
-for use with agents in the Dream Interview Method (DIM). 
+# Experiment: NLP Indexing for Dream Interview Method (DIM)
 
-Read READ_ME.MD , INDEXING_SYSTEM_DESIGN.MD PROMPT1.MD, CORPUS_STRUCTURE.MD, CORPUS_REGISTRY.MD DIM.MD and NLP_TOOL_RECOMMENDATIONS.MD for context.
+**Goal**: Determine the optimal combination of NLP tools and indexing strategies to support the "Martian Interviewer" stance and cross-mandala bridging.
 
-We want to have the NLP tools provide the best possible context for the agents to work with.
-The corpus is not too large, 10 mystics with 100 docs each in their mandala in the corpus. So we can afford to be a bit more computationally expensive
-in our analysis but we probably don't want to use up too many tokens with the subscription based agents people use so we want some ahead of time indexing to nlp tools.
+## Context
+Please read the following documents to understand the system architecture and goals:
+- `README.md`
+- `design/INDEXING_SYSTEM_DESIGN.MD`
+- `design/PROMPT1.MD`
+- `skills/CORPUS_STRUCTURE.MD`
+- `skills/CORPUS_REGISTRY.MD`
+- `design/DIM.MD` (Dream Interview Method)
+- `design/NLP_TOOL_RECOMMENDATIONS.MD`
 
-Favor higher recall so the agents have a better chance at finding structural similarity betweeh the two mandalas being projected onto each other.
-As a metaphor assume some kind of small graph structure in one mandala is being projected onto another small graph structure on another mandala for explanaing an idea or relationship or process from one mystic to another (usually the user's mandala or my mandala).
+## Objective
+We need to pre-index the corpus to support high-recall, context-rich queries without consuming excessive tokens during runtime. The focus is on capturing **embodied processes**, **sense gate metaphors**, and **mythic beings**.
 
-You may be as creative as you like for experimenting, the instructions in this document are meant to be starting points for exploring not requirements.
+**Key Metaphor**: Imagine projecting a small graph structure (an idea, relationship, or process) from one mandala onto another to find the most structurally similar subgraph.
 
-For this run, focus on the indexing of individual mandalas to enable the indexing of an embodied process (perhaps described in sense gate metaphors) or idea or mythic being from one mandala's document to another mandala's document. Some example queries we want to support:
+## Constraints & Environment
+- **Corpus Size**: ~10 mystics, ~100 docs each (small enough for heavier analysis).
+- **Compute vs. Tokens**: Favor ahead-of-time computational expense over runtime token usage.
+- **Recall Priority**: High recall is crucial to find subtle structural similarities.
+- **Data Source**: Use `C:\Users\hecto\Documents\mystic_corpus` as the sample corpus.
+- **Workspace**:
+    - Use `C:\tmp` for scratch space.
+    - Create a new Python virtual environment to avoid polluting the repo.
+- **Output**:
+    - Write experiment results to `reports\NLP_INDEXING_EXPERIMENTS1.MD`.
+    - Document useful/missing tools for future implementation.
 
-** Example queries **
+## Target Queries (Use Cases)
 
-Please describe Ekajati in sasha's manda in their metaphors into my_mandala, find the most similar being and pull out the martian interview description
-and bridging bteween the two beings.
+### 1. Entity Bridging
+> "Please describe Ekajati in sasha's mandala using their metaphors, then find the most similar being in my_mandala (eigenhector) and bridge the two."
+- *Needs*: Entity extraction, attribute extraction, similarity matching based on attributes/roles rather than just name.
 
-Please extract out the different kinds of beings in eigenhector's mandala and describe them in terms of their sense gate metaphors.
+### 2. Metaphor Extraction
+> "Extract the different kinds of beings in eigenhector's mandala and describe them in terms of their sense gate metaphors."
+- *Needs*: connecting entities to sensory language (sight, sound, feeling) found in proximity.
 
-What are the relationships between the different beings in my mandala (my mandala is eigenhector, if you need to modify the bit in corpus_registry go ahead)?
+### 3. Relationship Mapping
+> "What are the relationships between the different beings in my mandala?"
+- *Needs*: Relation extraction (e.g., X aids Y, A fights B).
 
-** experimentation environment **
+### 4. Process/Dynamic Mapping [NEW]
+> "Find a process in eliade's mandala that resembles the 'descent into the underworld' found in sasha's mandala."
+- *Needs*: Identifying sequences of events or transformations.
 
-Use C:\Users\hecto\Documents\mystic_corpus as the sample corpus, batch access granted for experimentation.
-You can create subdirectories in the folder for testing.
-Please use a new python virtual environment for this project so as not pollute the repo.
-You can use c:\tmp for scratch space for experimentation, batch access granted for this folder.
+### 5. Vibe/Atmosphere Search [NEW]
+> "Find passages in paul_litvak's corpus that have the same 'suffocating bureaucratic dread' as this specific paragraph from my journal."
+- *Needs*: Sentiment analysis, extensive tonal matching, or embedding-based semantic search.
 
-Please write experiment results reports\NLP_INDEXING_EXPERIMENTS1.MD for future agents to implement the best strategy for INDEXING_SYSTEM_DESIGN.MD.
-Document any potentially useful or missing tools for corpus manipulation and indexing for future implementation.
+### 6. Concept Projection [NEW]
+> "How would the concept of 'Rigpa' (from a Dzogchen mandala) be expressed using the vocabulary of a 'Cyberpunk' mandala?"
+- *Needs*: Cross-domain mapping, identifying functional equivalents of checking/awareness.
