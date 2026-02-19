@@ -34,15 +34,15 @@ We need to pre-index the corpus to support high-recall, context-rich queries wit
 - **Recall Priority**: High recall is crucial to find subtle structural similarities.
 - **Data Source**: Use `C:\Users\hecto\Documents\mystic_corpus` as the sample corpus.
 - **Workspace**:
-    - Use `C:\tmp` for scratch space.
-    - Create a new Python virtual environment to avoid polluting the repo.
+    - **Working Directory**: Perform all experiments locally in `C:\Users\hecto\Projects\experiments\nlp_indexing\`.
+    - **Isolation**: Create a new Python virtual environment/workspace here to avoid polluting the main repository.
 - **Output & Iteration**:
     - **Incremental Experimentation**: Agents should feel free to run multiple small experiments to test different hypotheses or tools.
-    - **Reporting**: Write detailed results of your specific run to `reports\nlp_indexing\RUN_X.MD` where `X` is an incrementing number (e.g., `RUN_1`, `RUN_2`).
+    - **Reporting**: Write detailed results of your specific run to `C:\Users\hecto\Projects\experiments\nlp_indexing\RUN_X.MD` where `X` is an incrementing number (e.g., `RUN_1`, `RUN_2`).
     
     - **Standardized Logging for Continuity (CRITICAL)**:
-        - You MUST maintain a running log of findings in `reports\nlp_indexing\EXPERIMENTS_LOG.MD`.
-        - **Read First**: Before starting any experiment, read `reports\nlp_indexing\EXPERIMENTS_LOG.MD` to see what has already been tried and what the recommended "Next Steps" are.
+        - You MUST maintain a running log of findings in `C:\Users\hecto\Projects\experiments\nlp_indexing\EXPERIMENTS_LOG.MD`.
+        - **Read First**: Before starting any experiment, read `C:\Users\hecto\Projects\experiments\nlp_indexing\EXPERIMENTS_LOG.MD` to see what has already been tried and what the recommended "Next Steps" are.
         - **Log Format**: Append a new entry for your experiment using this format:
             ```markdown
             ## Experiment [ID]: [Title]
@@ -62,7 +62,7 @@ We need to pre-index the corpus to support high-recall, context-rich queries wit
             ### Recommended Next Steps for Next Agent
             - [Specific instruction for the next agent]
             ```
-        - **Recovering Context**: If you generate expensive data (like embeddings or a large index), DO NOT delete it. Save it to `reports/nlp_indexing/artifacts/` and note its location in the `EXPERIMENTS_LOG.MD` so the next agent can load it instead of re-computing.
+        - **Recovering Context**: If you generate expensive data (like embeddings or a large index), DO NOT delete it. Save it to `C:\Users\hecto\Projects\experiments\nlp_indexing\artifacts\` and note its location in the `EXPERIMENTS_LOG.MD` so the next agent can load it instead of re-computing.
 
     - **Deliverables**:
         - Explore and compare "Regex vs Embedding" for Sense Gate extraction, documenting pros and cons.
