@@ -8,6 +8,8 @@ The goal of the indexing system is to enable fast, semantic retrieval of concept
 ### 1. Sense Gate Index (`sense_gates.json`)
 Maps sensory experiences (sight, sound, smell, taste, touch, proprioception, interoception) to their occurrences in the corpus.
 
+**Location:** `mystic_corpus/<user>/indices/sense_gates.json`
+
 **Target Use Case:** "What smells like 'rose' in Eliade's mandala?"
 
 **Schema:**
@@ -16,7 +18,6 @@ Maps sensory experiences (sight, sound, smell, taste, touch, proprioception, int
   "sight": [
     {
       "term": "red rose",
-      "adjectives": ["thorny", "beautiful"],
       "context": "The **red rose** was thorny but beautiful...",
       "doc_id": "00001.md",
       "line_number": 42
@@ -25,7 +26,6 @@ Maps sensory experiences (sight, sound, smell, taste, touch, proprioception, int
   "smell": [
     {
       "term": "rose",
-      "adjectives": ["sweet", "faint"],
       "context": "A faint **rose** scent lingered...",
       "doc_id": "00005.md",
       "line_number": 12
@@ -35,8 +35,9 @@ Maps sensory experiences (sight, sound, smell, taste, touch, proprioception, int
 ```
 
 **Extraction Strategy:**
-- **NLP/LLM Assisted:** Use an LLM or NLP tool to scan documents and extract sensory descriptions.
-- **Classification:** Classify each extraction into one of the 7 sense gates.
+- **Keyword-Based (Initial):** Use a comprehensive dictionary of sensory keywords (e.g., "red", "loud", "sweet") to extract sentences containing these terms from each document.
+- **NLP/LLM Assisted (Future):** Use an LLM or NLP tool to scan documents and extract sensory descriptions with higher semantic accuracy.
+- **Classification:** Classify each extraction into one of the 7 sense gates based on the keyword's category.
 - **Synesthesia Support:** Allow cross-referencing (e.g., query "sharp" in "sight" might return "sharp" in "touch").
 
 ### 2. Mythic Being Index (`mythic_beings.json`)
@@ -74,13 +75,13 @@ Maps mythic beings, entities, and characters to their descriptions and actions w
 ## Cross-Referencing & Backlinks
 Every index entry must include a "backlink" to the source document.
 - **`doc_id`**: The filename in the `docs/` directory (e.g., `00001.md`).
-- **`line_number`**: The approximate line number where the match occurs.
-- **`context`**: A snippet of text surrounding the match (e.g., +/- 100 characters).
+- **`line_number`**: The approximate line number where the match occurs (if available).
+- **`context`**: A snippet of text surrounding the match.
 
  This structure allows agents to:
 1.  Find a match in the index.
 2.  Retrieve the full document content using `doc_id`.
-3.  Locate the exact position using `line_number` or text search for the `context`.
+3.  Locate the approximate position using text search for the `context`.
 
 ## Extensibility
 New indices can be added by creating a new JSON file in the `indices/` directory.

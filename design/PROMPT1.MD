@@ -5,6 +5,7 @@ The goal is to create a storage system to store fetched or imported documents in
 consider easy use on windows, mac and linux.
 
 look at C:\Users\hecto\Documents\mystic_corpus for an existing sample of data. You can propose a new way of oranizing the data in a database or file structure in the new design.
+use c:\tmp for test output location
 
 Users are mystics who want to analyze their mandala (composed of a corpus of documents in the mystic_corpus) and see what various objects in other peoples mandalas look like.
 A mandala is a collection of documents in a corpus organized by user.
