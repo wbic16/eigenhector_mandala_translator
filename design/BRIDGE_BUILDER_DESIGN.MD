@@ -59,3 +59,28 @@ python tools/build_bridge.py --corpus-a ari --corpus-b hector --output bridges/a
 **Requirements**:
 *   Access to the `mystic_corpus` directory.
 *   Access to an LLM API (for the divergence and summary generation).
+
+## Bridge Types & Examples
+
+The system aims to support various types of structural and semantic bridging. Below are specific examples of the types of bridges the system is designed to construct:
+
+### 1. Entity Bridging
+Mapping specific entities or beings between mandalas based on their attributes and roles rather than just names.
+> **Example**: "Please describe Ekajati in sasha's mandala using their metaphors, then find the most similar being in my_mandala (eigenhector) and bridge the two."
+
+### 2. Metaphor Extraction & Projection
+Connecting entities to sensory language and projecting concepts across domains.
+> **Example**: "Extract the different kinds of beings in eigenhector's mandala and describe them in terms of their sense gate metaphors."
+> **Concept Projection**: "How would the concept of 'Rigpa' (from a Dzogchen mandala) be expressed using the vocabulary of a 'Cyberpunk' mandala?"
+
+### 3. Process/Dynamic Mapping
+Identifying and comparing sequences of events, transformations, or dynamic processes.
+> **Example**: "Find a process in eliade's mandala that resembles the 'descent into the underworld' found in sasha's mandala."
+
+### 4. Vibe/Atmosphere Search
+Matching passages based on sentiment, tone, and "feeling" (vibe), allowing for bridges built on shared emotional registers.
+> **Example**: "Find passages in paul_litvak's corpus that have the same 'suffocating bureaucratic dread' as this specific paragraph from my journal."
+
+### 5. Relationship Mapping
+Understanding and comparing the web of relationships between beings or concepts to find structural isomorphism.
+> **Example**: "What are the relationships between the different beings in my mandala?"

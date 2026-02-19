@@ -28,6 +28,8 @@ We need to pre-index the corpus to support high-recall, context-rich queries wit
 - **Output**:
     - Write experiment results to `reports\NLP_INDEXING_EXPERIMENTS1.MD`.
     - Document useful/missing tools for future implementation.
+    - Please report any design recommendations you have for improving the system. For example, you might recommend adding new indices or changing the way that existing indices are organized.
+    - add a section on recommendations for entity extraction and similarity matching based on attributes/roles rather than just name.
 
 ## Target Queries (Use Cases)
 
@@ -54,3 +56,4 @@ We need to pre-index the corpus to support high-recall, context-rich queries wit
 ### 6. Concept Projection [NEW]
 > "How would the concept of 'Rigpa' (from a Dzogchen mandala) be expressed using the vocabulary of a 'Cyberpunk' mandala?"
 - *Needs*: Cross-domain mapping, identifying functional equivalents of checking/awareness.
+
