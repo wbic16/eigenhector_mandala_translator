@@ -1,4 +1,4 @@
-The following is a way to set up guide if you manage multiple
+The following is a set up guide if you manage multiple
 enivornments via conda.
 
 # Clone the repo
@@ -25,7 +25,8 @@ within the conda environment `mandala_translator`
 (tested on Claude Code):
 
 ```
-In the conda environment mandala_translator, I would like to use the skill DreamBridge to fetch and compare content from
+In the conda environment mandala_translator, I would like to
+use the skill DreamBridge to fetch and compare content from
 
 <site_url1>
 
