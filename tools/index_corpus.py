@@ -53,6 +53,39 @@ def extract_sentences(text):
     # Simple sentence splitting
     return re.split(r'(?<!\w\.\w.)(?<![A-Z][a-z]\.)(?<=\.|\?)\s', text)
 
+def mask_content(text):
+    """
+    Replaces URLs and boilerplate with spaces, preserving length and offsets.
+    """
+    masked = text
+    
+    # 1. Mask URLs (http/https)
+    # This regex matches http:// or https:// followed by non-whitespace characters
+    def replace_with_spaces(match):
+        return " " * len(match.group(0))
+    
+    masked = re.sub(r'https?://\S+', replace_with_spaces, masked)
+    
+    # 2. Mask common boilerplate lines (Substack specific)
+    # Matches lines starting with specific keywords, case insensitive
+    boilerplate_patterns = [
+        r'^Subscribe.*$',
+        r'^Share.*$',
+        r'^CommentsRestacks.*$',
+        r'^TopLatestDiscussions.*$',
+        r'^©.*$', 
+        r'^.*requires JavaScript.*$'
+    ]
+    
+    for pattern in boilerplate_patterns:
+        masked = re.sub(pattern, replace_with_spaces, masked, flags=re.MULTILINE | re.IGNORECASE)
+
+    # 3. Mask image file extensions if they appear in text that looks like a filename
+    # e.g. "default-light.png" -> "                 "
+    masked = re.sub(r'[\w-]+\.(png|jpg|jpeg|gif|webp)', replace_with_spaces, masked, flags=re.IGNORECASE)
+
+    return masked
+
 def index_mandala(user_alias, user_data):
     print(f"Indexing mandala for: {user_alias}")
     
@@ -85,50 +118,45 @@ def index_mandala(user_alias, user_data):
                         return i + 1
                 return len(newline_offsets) + 1
 
-            sentences = extract_sentences(content)
-            
-            # specific strategy to find offset of sentence: 
-            # This is tricky because split loses offset. 
-            # Alternative: iterate through matches in the full content.
-            
-            # Let's use a simpler approach: Process by paragraph or line, or regex finditer on full text.
-            # Given the requirement for "sentences", regex finditer of words is better.
-            
-            lower_content = content.lower()
+            # Create masked content for searching
+            masked_content = mask_content(content)
+            lower_masked_content = masked_content.lower()
             
             for sense, keywords in SENSE_KEYWORDS.items():
                 for keyword in keywords:
-                    # Search for the keyword in the text
+                    # Search for the keyword in the masked text
                     # We utilize re.finditer to get valid locations
                     pattern = r'\b' + re.escape(keyword) + r'\b'
-                    for match in re.finditer(pattern, lower_content):
+                    for match in re.finditer(pattern, lower_masked_content):
                         start_pos = match.start()
                         
                         # Calculate line number
                         line_num = get_line_number(start_pos)
                         
-                        # Extract context (approximate sentence)
-                        # Find previous sentence delimiter
+                        # Extract context from ORIGINAL content using offsets found in MASKED content
+                        # Find previous sentence delimiter in ORIGINAL content
                         context_start = max(0, content.rfind('.', 0, start_pos), content.rfind('?', 0, start_pos), content.rfind('!', 0, start_pos))
                         if context_start > 0:
                              context_start += 1 # Skip the delimiter
                         
-                        # Find next sentence delimiter
+                        # Find next sentence delimiter in ORIGINAL content
                         context_end = min(len(content), content.find('.', start_pos), content.find('?', start_pos), content.find('!', start_pos))
-                        if context_end == -1: # Not found, try end of file
-                             # If find returns -1, it means not found. min will take -1 if checked against len. 
-                             # We need to handle -1s.
+                        if context_end == -1: 
                              delims = [pos for pos in [content.find('.', start_pos), content.find('?', start_pos), content.find('!', start_pos)] if pos != -1]
                              context_end = min(delims) if delims else len(content)
 
-                        if context_end < context_start: # Should happen if delimiter logic is flawed or single sentence
+                        if context_end < context_start:
                             context_end = len(content)
                             
                         context = content[context_start:context_end+1].strip()
                         
-                        # Clean up context if it's too long (e.g. detailed list or bad formatting)
+                        # Clean up context if it's too long
                         if len(context) > 300:
                             context = context[:300] + "..."
+                        
+                        # Ensure we don't add empty context
+                        if not context:
+                            continue
 
                         entry = {
                             "term": keyword,
@@ -160,9 +188,6 @@ def main():
     registry = load_registry()
     
     # Process each user in the registry
-    # Also look for directories that might not be in registry but exist (e.g. test_corpus)
-    # But for now, trust registry + test_corpus
-    
     for user_alias, user_data in registry.items():
         index_mandala(user_alias, user_data)
         
