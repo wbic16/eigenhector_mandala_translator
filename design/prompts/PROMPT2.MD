@@ -35,9 +35,14 @@ We need to pre-index the corpus to support high-recall, context-rich queries wit
 - **Data Source**: Use `C:\Users\hecto\Documents\mystic_corpus` as the sample corpus.
 - **Workspace**:
     - **Working Directory**: Perform all experiments locally in `C:\Users\hecto\Projects\experiments\nlp_indexing\`.
-    - **Isolation**: Create a new Python virtual environment/workspace here to avoid polluting the main repository.
-    - **Permissions**:
-        - Ask for the required batch access to the corpus and experiment directories and tool permissions before any run.
+    - **Isolation**: Create a new Python virtual environment/workspace here to avoid polluting the main repository. specifically, name the environment `venv` at `C:\Users\hecto\Projects\experiments\nlp_indexing\venv` and always activate it for runs.
+    - **Permissions & Automation**:
+        - **Upfront Permission Granting**: Your script MUST request ALL necessary permissions (file system access to corpus/workspace, network access for downloads, execution rights) at the very beginning of the execution.
+        - **Unattended Execution**: Once started, the experiment should run to completion without requiring further user intervention or permission prompts. This is critical for long-running batch processes.
+    - **Tooling**:
+        - **Access**: A `setup_path.py` script is provided in the experiment directory. YOU MUST `import setup_path` at the top of every python script you write to ensure you can import the corpus tools.
+        - **Dependencies**: You are responsible for installing necessary dependencies for the tools (e.g., `pip install requests beautifulsoup4 markdownify`) if they are not present in your virtual environment.
+        - **Location**: The tools are physically located at `C:\Users\hecto\Projects\eigenhector_mandala_translator\tools`, but `setup_path.py` handles the path modification.
 - **Output & Iteration**:
     - **Incremental Experimentation**: Agents should feel free to run multiple small experiments to test different hypotheses or tools.
     - **Reporting**: Write detailed results of your specific run to `C:\Users\hecto\Projects\experiments\nlp_indexing\RUN_X.MD` where `X` is an incrementing number (e.g., `RUN_1`, `RUN_2`).
@@ -89,7 +94,7 @@ We need to pre-index the corpus to support high-recall, context-rich queries wit
 - *Needs*: Relation extraction (e.g., X aids Y, A fights B).
 
 ### 4. Process/Dynamic Mapping [NEW]
-> "Find a process in eliade's mandala that resembles the 'descent into the underworld' found in sasha's mandala."
+> "Find a process in meredith's mandala that resembles the 'descent into the underworld' found in sasha's mandala."
 - *Needs*: Identifying sequences of events or transformations.
 
 ### 5. Vibe/Atmosphere Search [NEW]
