@@ -36,6 +36,7 @@ These skills enable the comparison of different mystical perspectives.
 *   **[Dream Interview Method (DIM)](DreamBridge/DIM.MD)**: The core methodology for interpreting metaphors as "dream images" using a Martian perspective.
 *   **[Dream Bridge Template](ARI_DREAM_BRIDGE_TEMPLATE.MD)**: A structured template for documenting the comparison and synthesis of two parallel corpora.
 *   **[Chiral Mirror Dialogue](CHIRAL_MIRROR_BOHMIAN_THANGKA.MD)**: A skill for simulating Bohmian dialogues through a chiral mirror to bridge mandalas.
+*   **[Jataka Tales](JATAKA_TALES.MD)**: Generates stories of past lives to develop the Avatar of Goodness, Truth, and Beauty.
 
 ---
 
