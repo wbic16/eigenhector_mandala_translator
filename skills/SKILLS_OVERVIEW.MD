@@ -19,15 +19,21 @@ These skills handle the initial acquisition and organization of data.
 
 *   **[Adding Corpus Users](ADD_CORPUS_USER.MD)**: How to register user aliases and source URLs in the registry.
 *   **[Listing Corpus Users](LIST_CORPUS_USERS.MD)**: Procedure for viewing all registered users and their sources.
+*   **[Corpus Registry](CORPUS_REGISTRY.MD)**: Documentation for the central `corpus_registry.json`.
 *   **[Corpus Fetching](CORPUS_FETCHING.MD)**: Instructions for downloading content using the fetching tools.
+*   **[Substack Bulk Add](SUBSTACK_BULK_ADD.MD)**: Streamlined addition and fetching of multiple Substack users.
+*   **[Local Corpus Builder](LOCAL_CORPUS.MD)**: Transforms a local directory of documents into a structured Mystic Corpus.
 *   **[Corpus Structure](CORPUS_STRUCTURE.MD)**: Defines the directory hierarchy (`index.json` and `docs/`) used for storage.
 
-## 2. Analysis Skills
+## 2. Analysis & Character Skills
 
-These skills focus on extracting meaningful insights from a single corpus.
+These skills focus on extracting meaningful insights and generating entities from a corpus.
 
 *   **[Corpus Analysis](CORPUS_ANALYSIS.MD)**: Guidelines for identifying recurring metaphors, emotional textures, and structural dimensions.
-*   **[Analysis JSON Template](ANALYSIS_JSON_TEMPLATE.json)**: The machine-readable schema for analysis output, required for downstream bridging.
+*   **[Magitech Survey](MAGITECH_SURVEY.MD)**: Investigates the "Magitech" nature of beings and rates their rank.
+*   **[Hero Character Sheet](HERO_CHARACTER_SHEET.MD)**: Translates surveyed beings into balanced RPG-style character sheets.
+*   **[Realm Ethics](REALM_ETHICS.MD)**: Defines the philosophical and evolutionary trajectory (Ascension Paths) of a realm.
+*   **[Analysis JSON Template](ANALYSIS_JSON_TEMPLATE.json)**: The machine-readable schema for analysis output.
 
 ## 3. Comparison Skills (The Dream Bridge)
 
@@ -37,6 +43,7 @@ These skills enable the comparison of different mystical perspectives.
 *   **[Dream Bridge Template](ARI_DREAM_BRIDGE_TEMPLATE.MD)**: A structured template for documenting the comparison and synthesis of two parallel corpora.
 *   **[Chiral Mirror Dialogue](CHIRAL_MIRROR_BOHMIAN_THANGKA.MD)**: A skill for simulating Bohmian dialogues through a chiral mirror to bridge mandalas.
 *   **[Jataka Tales](JATAKA_TALES.MD)**: Generates stories of past lives to develop the Avatar of Goodness, Truth, and Beauty.
+*   **[Magitech Yab Yum](MAGITECH_YAB_YUM.MD)**: Orchestrates surveys, Jataka tales, and tantric dialogues to unify magic and technology.
 
 ---
 
@@ -47,6 +54,8 @@ The following Python tools support the execution of these skills:
 | Tool | Purpose |
 | :--- | :--- |
 | `fetch_corpus.py` | Downloads content and converts it to structured Markdown files. |
+| `bulk_add_substack.py` | Handles bulk registration and fetching of Substack users. |
 | `list_users.py` | Displays the current corpus registry. |
+| `index_corpus.py` | Indexes the corpus for metadata and search. |
 | `verify_corpus.py` | Validates the integrity and completeness of a fetched corpus. |
 | `validate_analysis_json.py` | Ensures analysis results strictly follow the required JSON schema. |
