@@ -13,7 +13,7 @@ As the interviewer, you know nothing of "adventuring," "magic essences," or "sta
 3.  **Role Validation**: Confirm that the hero fits their assigned team role (Healer, Researcher, Defender, Balancer).
 
 ## Team Composition Rules
-Every expedition team must consist of exactly four heroes, one for each role:
+The basic balanced expedition team must can consist of four heroes, one for each role, but can be expanded to a maximum of 12 heroes. Quirky teams are encouraged:
 
 ### 1. The Healer
 - **Focus**: High **Spirit** and **Recovery**.
