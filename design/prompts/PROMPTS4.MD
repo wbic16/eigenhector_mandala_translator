@@ -1,13 +1,10 @@
-Chiral Mirror
+# Design Reference: Chiral Mirror
 
-Read this document and create a skill called CHIRAL_MIRROR.MD for agents to simulate a dialogue between two entities about how to bridge two mandalas.
-Clearly document all research findings in the document so agents can refer to the concepts described here and reproduce the intent. including sample beings.
-Read Skills/DreamBridge/DIM.MD to understand the martian interviewer and use that method for description.
-Prefer two entities from different mandalas.
-Use tools such as corpus indexing and analysis if needed to pick the two entities from the mystic corpus from two different mandalas.
-If unavailable write quick tools to assist in picking the two entities.
+This document serves as the foundational design source for the `CHIRAL_MIRROR_BOHMIAN_THANGKA.MD` skill. It contains the core concepts and research directions for simulating dialogues between entities from different mandalas.
 
-This document describes a bohmian dialogue between two entities how they appear to each other through a chiral mirror.
+## Core Intent
+The goal is to describe a Bohmian Dialogue between two entities from different mandalas as they appear to each other through a "chiral mirror." This mirror reflects the world by flipping specific axes of reality or identity.
+
 Pick the two entities that are most likely to have an interesting conversation.
 
 Use the following resources to understand the concepts an design the dialogue. Provide these options for agents to pick for the dialogue format.
