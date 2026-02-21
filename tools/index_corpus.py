@@ -3,10 +3,15 @@ import json
 import re
 import glob
 import corpus_config
+import nltk
+from nltk.stem import PorterStemmer
 
 # Configuration
 CORPUS_ROOT = corpus_config.get_base_dir()
 REGISTRY_FILE = corpus_config.get_registry_path()
+
+# Initialize Stemmer
+stemmer = PorterStemmer()
 
 # Thematic Keywords Dictionary
 THEMES = {
@@ -14,50 +19,52 @@ THEMES = {
         "sight": [
             "red", "blue", "green", "yellow", "white", "black", "purple", "orange", "pink",
             "dark", "bright", "shiny", "dull", "glowing", "shimmering", "transparent", "opaque",
-            "vision", "visual", "saw", "seen", "look", "light", "color", "shadow", "image"
+            "vision", "visual", "saw", "seen", "look", "light", "color", "shadow", "image",
+            "gaze", "behold", "observe", "spectrum", "radiance", "brilliance", "glimmer"
         ],
         "sound": [
             "loud", "quiet", "silent", "noisy", "whisper", "scream", "shout", "bang", "crash",
             "music", "melody", "tone", "voice", "heard", "listen", "auditory", "sound", "hum",
-            "ringing", "vibration", "song"
+            "ringing", "vibration", "song", "resonance", "echo", "chorus", "rhythm", "acoustic"
         ],
         "smell": [
             "fragrant", "stinky", "scent", "odor", "perfume", "aroma", "smell", "sniff", "nose",
-            "pungent", "musky", "floral"
+            "pungent", "musky", "floral", "waft", "essence", "bouquet", "reek"
         ],
         "taste": [
             "sweet", "sour", "bitter", "salty", "savory", "umami", "delicious", "disgusting",
-            "taste", "flavor", "mouth", "tongue", "spicy"
+            "taste", "flavor", "mouth", "tongue", "spicy", "acrid", "tangy", "palate"
         ],
         "touch": [
             "hard", "soft", "rough", "smooth", "hot", "cold", "warm", "wet", "dry", "texture",
-            "felt", "touch", "skin", "pain", "itch", "tingle", "pressure", "sharp", "blunt"
+            "felt", "touch", "skin", "pain", "itch", "tingle", "pressure", "sharp", "blunt",
+            "tactile", "caress", "friction"
         ],
         "proprioception": [
             "heavy", "light", "floating", "sinking", "spinning", "dizzy", "balance", "movement",
-            "position", "falling", "rising", "weight", "gravity", "body"
+            "position", "falling", "rising", "weight", "gravity", "body", "posture", "coordination"
         ],
         "interoception": [
             "heartbeat", "breath", "pulse", "hunger", "thirst", "pain", "pleasure", "emotion",
-            "feeling", "gut", "stomach", "chest", "throat", "internal", "visceral"
+            "feeling", "gut", "stomach", "chest", "throat", "internal", "visceral", "nausea"
         ]
     },
     "magitech": {
-        "resonance": ["resonance", "harmonic", "synchronization", "vibration", "echo"],
-        "engineering": ["engineering", "magitech", "machinery", "device", "construction", "blueprint"],
-        "archetypes": ["wordcel", "shape rotator", "scientist", "engineer", "artificer"],
-        "aura": ["vibe aura", "presence", "emanation", "glow", "energy"],
-        "union": ["yab-yum", "chiral", "synthesis", "union", "duality", "mirror"]
+        "resonance": ["resonance", "harmonic", "synchronization", "vibration", "echo", "attunement", "frequency", "pulse"],
+        "engineering": ["engineering", "magitech", "machinery", "device", "construction", "blueprint", "circuit", "conduit", "capacitor", "emitter"],
+        "archetypes": ["wordcel", "shape rotator", "scientist", "engineer", "artificer", "technician", "alchemist", "scholar"],
+        "aura": ["vibe aura", "presence", "emanation", "glow", "energy", "field", "radiance", "shimmer"],
+        "union": ["yab-yum", "chiral", "synthesis", "union", "duality", "mirror", "symmetry", "merging", "fusion"]
     },
     "ethics": {
-        "alignment": ["authoritarian", "egalitarian", "xenophobe", "xenophile", "militarist", "pacifist", "spiritualist", "materialist"],
-        "society": ["civic", "governance", "order", "structure", "tradition", "meritocracy"],
-        "evolution": ["ascension", "transcendence", "evolution", "path", "final form", "great work"]
+        "alignment": ["authoritarian", "egalitarian", "xenophobe", "xenophile", "militarist", "pacifist", "spiritualist", "materialist", "sovereignty", "autonomy"],
+        "society": ["civic", "governance", "order", "structure", "tradition", "meritocracy", "hierarchy", "collective", "individualism", "justice"],
+        "evolution": ["ascension", "transcendence", "evolution", "path", "final form", "great work", "utopia", "dystopia", "enlightenment"]
     },
     "heroic": {
-        "attributes": ["power", "speed", "spirit", "recovery", "strength", "agility", "vitality", "stamina"],
-        "roles": ["healer", "researcher", "defender", "balancer", "tank", "support", "tactician"],
-        "mechanics": ["essence", "confluence", "soul", "rank", "ability", "skill", "mana"]
+        "attributes": ["power", "speed", "spirit", "recovery", "strength", "agility", "vitality", "stamina", "willpower", "bravery", "courage", "fortitude"],
+        "roles": ["healer", "researcher", "defender", "balancer", "tank", "support", "tactician", "leader", "scout", "assassin"],
+        "mechanics": ["essence", "confluence", "soul", "rank", "ability", "skill", "mana", "cooldown", "mastery", "potential", "buff", "debuff"]
     }
 }
 
@@ -117,8 +124,16 @@ def index_mandala(user_alias, user_data):
 
     os.makedirs(indices_dir, exist_ok=True)
     
+    # Pre-stem themes for matching
+    stemmed_vocabulary = {}
+    for t_name, cats_dict in THEMES.items():
+        stemmed_vocabulary[t_name] = {}
+        for c_name, kws_list in cats_dict.items():
+            # Map of stem -> original keyword
+            stemmed_vocabulary[t_name][c_name] = {stemmer.stem(k.lower()): k for k in kws_list}
+
     # Initialize separate indices for each theme
-    indices = {theme: {category: [] for category in CATEGORIES} for theme, CATEGORIES in THEMES.items()}
+    indices = {t: {c: [] for c in cats} for t, cats in THEMES.items()}
     
     doc_files = glob.glob(os.path.join(docs_dir, "*.md"))
     
@@ -131,61 +146,76 @@ def index_mandala(user_alias, user_data):
             # Create a map of character offset to line number
             newline_offsets = [i for i, char in enumerate(content) if char == '\n']
             
-            def get_line_number(char_offset):
-                for i, offset in enumerate(newline_offsets):
-                    if char_offset <= offset:
+            def get_line_number(char_off):
+                for i, off in enumerate(newline_offsets):
+                    if char_off <= off:
                         return i + 1
                 return len(newline_offsets) + 1
 
             # Create masked content for searching
             masked_content = mask_content(content)
-            lower_masked_content = masked_content.lower()
             
-            for theme, categories in THEMES.items():
-                for category, keywords in categories.items():
-                    for keyword in keywords:
-                        # Search for the keyword in the masked text
-                        pattern = r'\b' + re.escape(keyword) + r'\b'
-                        for match in re.finditer(pattern, lower_masked_content):
-                            start_pos = match.start()
-                            line_num = get_line_number(start_pos)
+            # Tokenize into words with offsets and stems
+            doc_words = []
+            for m in re.finditer(r'\b\w+\b', masked_content):
+                w_text = m.group(0)
+                doc_words.append({
+                    "text": w_text,
+                    "stem": stemmer.stem(w_text.lower()),
+                    "start": int(m.start())
+                })
+            
+            for t_name, t_cats in stemmed_vocabulary.items():
+                for c_name, stem_to_orig in t_cats.items():
+                    for w_info in doc_words:
+                        w_stem = w_info["stem"]
+                        if w_stem in stem_to_orig:
+                            s_pos = w_info["start"]
+                            ln_num = get_line_number(s_pos)
+                            m_term = stem_to_orig[w_stem]
                             
-                            # Extract context
-                            context_start = max(0, content.rfind('.', 0, start_pos), content.rfind('?', 0, start_pos), content.rfind('!', 0, start_pos))
-                            if context_start > 0:
-                                 context_start += 1
+                            # Extract context (sentence-based)
+                            # Look back for start of sentence or paragraph
+                            context_markers = ['\n', '. ', '? ', '! ']
+                            c_start = 0
+                            for mkr in context_markers:
+                                p_back = content.rfind(mkr, 0, int(s_pos))
+                                if p_back != -1:
+                                    c_start = max(c_start, p_back + len(mkr))
                             
-                            context_end = min(len(content), content.find('.', start_pos), content.find('?', start_pos), content.find('!', start_pos))
-                            if context_end == -1: 
-                                 delims = [pos for pos in [content.find('.', start_pos), content.find('?', start_pos), content.find('!', start_pos)] if pos != -1]
-                                 context_end = min(delims) if delims else len(content)
-
-                            if context_end < context_start:
-                                context_end = len(content)
-                                
-                            context = content[context_start:context_end+1].strip()
-                            if len(context) > 300:
-                                context = context[:300] + "..."
+                            # Look forward for end of sentence or paragraph
+                            c_end = len(content)
+                            for mkr in context_markers:
+                                p_fwd = content.find(mkr, int(s_pos))
+                                if p_fwd != -1:
+                                    c_end = min(c_end, p_fwd + len(mkr))
                             
-                            if not context:
+                            context_snippet = content[c_start:c_end].strip()
+                            if len(context_snippet) > 400:
+                                context_snippet = context_snippet[:400] + "..."
+                            
+                            if not context_snippet:
                                 continue
 
                             entry = {
-                                "term": keyword,
-                                "context": context,
+                                "term": m_term,
+                                "matched": w_info["text"],
+                                "context": context_snippet,
                                 "doc_id": doc_filename,
-                                "line_number": line_num
+                                "line_number": ln_num
                             }
                             
-                            # Avoid duplicates
-                            duplicate = False
-                            for existing in indices[theme][category]:
-                                if existing["doc_id"] == entry["doc_id"] and existing["line_number"] == entry["line_number"] and existing["term"] == entry["term"]:
-                                    duplicate = True
+                            # Avoid duplicates on the same line for the same theme/category
+                            is_dup = False
+                            for existing in indices[t_name][c_name]:
+                                if existing["doc_id"] == entry["doc_id"] and \
+                                   existing["line_number"] == entry["line_number"] and \
+                                   existing["term"] == entry["term"]:
+                                    is_dup = True
                                     break
                             
-                            if not duplicate:
-                                indices[theme][category].append(entry)
+                            if not is_dup:
+                                indices[t_name][c_name].append(entry)
 
         except Exception as e:
             print(f"Error reading {doc_path}: {e}")
