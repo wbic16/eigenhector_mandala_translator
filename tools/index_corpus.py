@@ -8,38 +8,57 @@ import corpus_config
 CORPUS_ROOT = corpus_config.get_base_dir()
 REGISTRY_FILE = corpus_config.get_registry_path()
 
-# Sensory Keywords Dictionary
-SENSE_KEYWORDS = {
-    "sight": [
-        "red", "blue", "green", "yellow", "white", "black", "purple", "orange", "pink",
-        "dark", "bright", "shiny", "dull", "glowing", "shimmering", "transparent", "opaque",
-        "vision", "visual", "saw", "seen", "look", "light", "color", "shadow", "image"
-    ],
-    "sound": [
-        "loud", "quiet", "silent", "noisy", "whisper", "scream", "shout", "bang", "crash",
-        "music", "melody", "tone", "voice", "heard", "listen", "auditory", "sound", "hum",
-        "ringing", "vibration", "song"
-    ],
-    "smell": [
-        "fragrant", "stinky", "scent", "odor", "perfume", "aroma", "smell", "sniff", "nose",
-        "pungent", "musky", "floral"
-    ],
-    "taste": [
-        "sweet", "sour", "bitter", "salty", "savory", "umami", "delicious", "disgusting",
-        "taste", "flavor", "mouth", "tongue", "spicy"
-    ],
-    "touch": [
-        "hard", "soft", "rough", "smooth", "hot", "cold", "warm", "wet", "dry", "texture",
-        "felt", "touch", "skin", "pain", "itch", "tingle", "pressure", "sharp", "blunt"
-    ],
-    "proprioception": [
-        "heavy", "light", "floating", "sinking", "spinning", "dizzy", "balance", "movement",
-        "position", "falling", "rising", "weight", "gravity", "body"
-    ],
-    "interoception": [
-        "heartbeat", "breath", "pulse", "hunger", "thirst", "pain", "pleasure", "emotion",
-        "feeling", "gut", "stomach", "chest", "throat", "internal", "visceral"
-    ]
+# Thematic Keywords Dictionary
+THEMES = {
+    "sense_gates": {
+        "sight": [
+            "red", "blue", "green", "yellow", "white", "black", "purple", "orange", "pink",
+            "dark", "bright", "shiny", "dull", "glowing", "shimmering", "transparent", "opaque",
+            "vision", "visual", "saw", "seen", "look", "light", "color", "shadow", "image"
+        ],
+        "sound": [
+            "loud", "quiet", "silent", "noisy", "whisper", "scream", "shout", "bang", "crash",
+            "music", "melody", "tone", "voice", "heard", "listen", "auditory", "sound", "hum",
+            "ringing", "vibration", "song"
+        ],
+        "smell": [
+            "fragrant", "stinky", "scent", "odor", "perfume", "aroma", "smell", "sniff", "nose",
+            "pungent", "musky", "floral"
+        ],
+        "taste": [
+            "sweet", "sour", "bitter", "salty", "savory", "umami", "delicious", "disgusting",
+            "taste", "flavor", "mouth", "tongue", "spicy"
+        ],
+        "touch": [
+            "hard", "soft", "rough", "smooth", "hot", "cold", "warm", "wet", "dry", "texture",
+            "felt", "touch", "skin", "pain", "itch", "tingle", "pressure", "sharp", "blunt"
+        ],
+        "proprioception": [
+            "heavy", "light", "floating", "sinking", "spinning", "dizzy", "balance", "movement",
+            "position", "falling", "rising", "weight", "gravity", "body"
+        ],
+        "interoception": [
+            "heartbeat", "breath", "pulse", "hunger", "thirst", "pain", "pleasure", "emotion",
+            "feeling", "gut", "stomach", "chest", "throat", "internal", "visceral"
+        ]
+    },
+    "magitech": {
+        "resonance": ["resonance", "harmonic", "synchronization", "vibration", "echo"],
+        "engineering": ["engineering", "magitech", "machinery", "device", "construction", "blueprint"],
+        "archetypes": ["wordcel", "shape rotator", "scientist", "engineer", "artificer"],
+        "aura": ["vibe aura", "presence", "emanation", "glow", "energy"],
+        "union": ["yab-yum", "chiral", "synthesis", "union", "duality", "mirror"]
+    },
+    "ethics": {
+        "alignment": ["authoritarian", "egalitarian", "xenophobe", "xenophile", "militarist", "pacifist", "spiritualist", "materialist"],
+        "society": ["civic", "governance", "order", "structure", "tradition", "meritocracy"],
+        "evolution": ["ascension", "transcendence", "evolution", "path", "final form", "great work"]
+    },
+    "heroic": {
+        "attributes": ["power", "speed", "spirit", "recovery", "strength", "agility", "vitality", "stamina"],
+        "roles": ["healer", "researcher", "defender", "balancer", "tank", "support", "tactician"],
+        "mechanics": ["essence", "confluence", "soul", "rank", "ability", "skill", "mana"]
+    }
 }
 
 def load_registry():
@@ -87,7 +106,7 @@ def mask_content(text):
     return masked
 
 def index_mandala(user_alias, user_data):
-    print(f"Indexing mandala for: {user_alias}")
+    print(f"Indexing mandala themes for: {user_alias}")
     
     docs_dir = os.path.join(CORPUS_ROOT, user_alias, "docs")
     indices_dir = os.path.join(CORPUS_ROOT, user_alias, "indices")
@@ -98,7 +117,8 @@ def index_mandala(user_alias, user_data):
 
     os.makedirs(indices_dir, exist_ok=True)
     
-    sense_index = {sense: [] for sense in SENSE_KEYWORDS}
+    # Initialize separate indices for each theme
+    indices = {theme: {category: [] for category in CATEGORIES} for theme, CATEGORIES in THEMES.items()}
     
     doc_files = glob.glob(os.path.join(docs_dir, "*.md"))
     
@@ -109,7 +129,6 @@ def index_mandala(user_alias, user_data):
                 content = f.read()
             
             # Create a map of character offset to line number
-            # Line numbers are 1-indexed
             newline_offsets = [i for i, char in enumerate(content) if char == '\n']
             
             def get_line_number(char_offset):
@@ -122,67 +141,61 @@ def index_mandala(user_alias, user_data):
             masked_content = mask_content(content)
             lower_masked_content = masked_content.lower()
             
-            for sense, keywords in SENSE_KEYWORDS.items():
-                for keyword in keywords:
-                    # Search for the keyword in the masked text
-                    # We utilize re.finditer to get valid locations
-                    pattern = r'\b' + re.escape(keyword) + r'\b'
-                    for match in re.finditer(pattern, lower_masked_content):
-                        start_pos = match.start()
-                        
-                        # Calculate line number
-                        line_num = get_line_number(start_pos)
-                        
-                        # Extract context from ORIGINAL content using offsets found in MASKED content
-                        # Find previous sentence delimiter in ORIGINAL content
-                        context_start = max(0, content.rfind('.', 0, start_pos), content.rfind('?', 0, start_pos), content.rfind('!', 0, start_pos))
-                        if context_start > 0:
-                             context_start += 1 # Skip the delimiter
-                        
-                        # Find next sentence delimiter in ORIGINAL content
-                        context_end = min(len(content), content.find('.', start_pos), content.find('?', start_pos), content.find('!', start_pos))
-                        if context_end == -1: 
-                             delims = [pos for pos in [content.find('.', start_pos), content.find('?', start_pos), content.find('!', start_pos)] if pos != -1]
-                             context_end = min(delims) if delims else len(content)
-
-                        if context_end < context_start:
-                            context_end = len(content)
+            for theme, categories in THEMES.items():
+                for category, keywords in categories.items():
+                    for keyword in keywords:
+                        # Search for the keyword in the masked text
+                        pattern = r'\b' + re.escape(keyword) + r'\b'
+                        for match in re.finditer(pattern, lower_masked_content):
+                            start_pos = match.start()
+                            line_num = get_line_number(start_pos)
                             
-                        context = content[context_start:context_end+1].strip()
-                        
-                        # Clean up context if it's too long
-                        if len(context) > 300:
-                            context = context[:300] + "..."
-                        
-                        # Ensure we don't add empty context
-                        if not context:
-                            continue
+                            # Extract context
+                            context_start = max(0, content.rfind('.', 0, start_pos), content.rfind('?', 0, start_pos), content.rfind('!', 0, start_pos))
+                            if context_start > 0:
+                                 context_start += 1
+                            
+                            context_end = min(len(content), content.find('.', start_pos), content.find('?', start_pos), content.find('!', start_pos))
+                            if context_end == -1: 
+                                 delims = [pos for pos in [content.find('.', start_pos), content.find('?', start_pos), content.find('!', start_pos)] if pos != -1]
+                                 context_end = min(delims) if delims else len(content)
 
-                        entry = {
-                            "term": keyword,
-                            "context": context,
-                            "doc_id": doc_filename,
-                            "line_number": line_num
-                        }
-                        
-                        # Avoid exact duplicates
-                        duplicate = False
-                        for existing in sense_index[sense]:
-                            if existing["doc_id"] == entry["doc_id"] and existing["line_number"] == entry["line_number"] and existing["term"] == entry["term"]:
-                                duplicate = True
-                                break
-                        
-                        if not duplicate:
-                            sense_index[sense].append(entry)
+                            if context_end < context_start:
+                                context_end = len(content)
+                                
+                            context = content[context_start:context_end+1].strip()
+                            if len(context) > 300:
+                                context = context[:300] + "..."
+                            
+                            if not context:
+                                continue
+
+                            entry = {
+                                "term": keyword,
+                                "context": context,
+                                "doc_id": doc_filename,
+                                "line_number": line_num
+                            }
+                            
+                            # Avoid duplicates
+                            duplicate = False
+                            for existing in indices[theme][category]:
+                                if existing["doc_id"] == entry["doc_id"] and existing["line_number"] == entry["line_number"] and existing["term"] == entry["term"]:
+                                    duplicate = True
+                                    break
+                            
+                            if not duplicate:
+                                indices[theme][category].append(entry)
 
         except Exception as e:
             print(f"Error reading {doc_path}: {e}")
 
-    output_path = os.path.join(indices_dir, "sense_gates.json")
-    with open(output_path, "w", encoding="utf-8") as f:
-        json.dump(sense_index, f, indent=2)
-    
-    print(f"Index saved to: {output_path}")
+    # Save each theme's index to a separate file
+    for theme, data in indices.items():
+        output_path = os.path.join(indices_dir, f"{theme}_index.json" if theme != "sense_gates" else "sense_gates.json")
+        with open(output_path, "w", encoding="utf-8") as f:
+            json.dump(data, f, indent=2)
+        print(f"Theme index [{theme}] saved to: {output_path}")
 
 def main():
     registry = load_registry()
