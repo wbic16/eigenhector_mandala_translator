@@ -42,4 +42,3 @@ test_output.txt
 .ipynb_checkpoints
 
 # Reports (Always gitignored)
-reports/
