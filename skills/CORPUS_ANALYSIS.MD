@@ -20,9 +20,8 @@ Before starting analysis, ensure you have the target corpus available.
     -   Command: `python tools/verify_corpus.py --name <corpus_name>`
     -   Example: `python tools/verify_corpus.py --name eigenhector`
 
-### Corpus Location
 The fetched corpus will be stored in:
-`mystic_corpus/<corpus_name>/docs` (e.g., `mystic_corpus/eigenhector/docs`)
+`reports/mystic_corpus/<corpus_name>/docs` (e.g., `reports/mystic_corpus/eigenhector/docs`)
 Each file will be a Markdown document containing a single post or article.
 
 > [!IMPORTANT]
@@ -84,14 +83,14 @@ In addition to metaphor analysis, compare the corpora along these structural dim
 ## Output Standards
 
 All analysis artifacts must be saved in the dedicated analysis directory:
-`mystic_corpus/<corpus_name>/analysis/`
-(e.g., `mystic_corpus/eigenhector/analysis/`)
+`reports/mystic_corpus/<corpus_name>/analysis/`
+(e.g., `reports/mystic_corpus/eigenhector/analysis/`)
 
 To ensure the analysis is both human-readable and machine-processable for downstream tasks (like the Dream Bridge), you must generate **two** output files for every analysis within this directory.
 
 ### 1. Human-Readable Output (HTML)
 **Purpose:** For human review and simplified reading.
-**Location:** `mystic_corpus/<corpus_name>/analysis/<corpus_name>_analysis_<YYYYMMDD>.html`
+**Location:** `reports/mystic_corpus/<corpus_name>/analysis/<corpus_name>_analysis_<YYYYMMDD>.html`
 **Format:**
 -   **Structure:** Standard HTML5.
 -   **Style:** Clean, minimal CSS (e.g., sans-serif fonts, clear headers, distinct sections for metaphors).
@@ -105,7 +104,7 @@ To ensure the analysis is both human-readable and machine-processable for downst
 
 ### 2. Machine-Readable Output (JSON)
 **Purpose:** To serve as input for `skills/DREAM_BRIDGE_TEMPLATE.MD` and other agentic tasks.
-**Location:** `mystic_corpus/<corpus_name>/analysis/<corpus_name>_analysis_<YYYYMMDD>.json`
+**Location:** `reports/mystic_corpus/<corpus_name>/analysis/<corpus_name>_analysis_<YYYYMMDD>.json`
 **Format:**
 -   **Strict Schema:** Must strictly follow the structure defined in `skills/ANALYSIS_JSON_TEMPLATE.json`.
 -   **Fields Required:**

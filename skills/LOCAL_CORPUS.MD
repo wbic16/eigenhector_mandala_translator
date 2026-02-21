@@ -19,7 +19,7 @@ Adopt the **Martian Interviewer** persona (see [DIM.MD](DreamBridge/DIM.MD)).
 Once the "Vibe" is established, proceed with the transmutation (indexing).
 
 1.  **Inventory**: List the files found in the target directory.
-2.  **Conversion**: For any non-Markdown files (`.pdf`, `.docx`, `.txt`), use appropriate conversion scripts to move them into the `mystic_corpus/[alias]/docs/` folder as `00001.md`, `00002.md`, etc.
+2.  **Conversion**: For any non-Markdown files (`.pdf`, `.docx`, `.txt`), use appropriate conversion scripts to move them into the `reports/mystic_corpus/[alias]/docs/` folder as `00001.md`, `00002.md`, etc.
 3.  **Frontmatter Synthesis**: Each file must have frontmatter generated:
     ```markdown
     ---
@@ -40,4 +40,4 @@ Once the "Vibe" is established, proceed with the transmutation (indexing).
     *   *Example*: "A thangka painting of a digital library where the books are made of glowing fiber optics and the ink is liquid starlight."
 
 ## Phase 4: Integration
-Add the new corpus to the `mystic_corpus/corpus_registry.json`.
+Add the new corpus to the `reports/mystic_corpus/corpus_registry.json`.

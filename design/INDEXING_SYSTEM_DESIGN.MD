@@ -8,7 +8,7 @@ The goal of the indexing system is to enable fast, semantic retrieval of concept
 ### 1. Sense Gate Index (`sense_gates.json`)
 Maps sensory experiences (sight, sound, smell, taste, touch, proprioception, interoception) to their occurrences in the corpus.
 
-**Location:** `mystic_corpus/<user>/indices/sense_gates.json`
+**Location:** `reports/mystic_corpus/<user>/indices/sense_gates.json`
 
 **Target Use Case:** "What smells like 'rose' in Eliade's mandala?"
 

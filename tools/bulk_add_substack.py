@@ -19,10 +19,9 @@ def get_registry_path(storage_root=None):
     if storage_root:
         base_dir = storage_root
     else:
-        if os.name == 'nt':
-            base_dir = os.path.join(os.environ['USERPROFILE'], 'Documents', 'mystic_corpus')
-        else:
-            base_dir = os.path.join(os.path.expanduser('~'), 'Documents', 'mystic_corpus')
+        # Default to reports/mystic_corpus in the project root
+        project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        base_dir = os.path.join(project_root, 'reports', 'mystic_corpus')
             
     return os.path.join(base_dir, 'corpus_registry.json'), base_dir
 

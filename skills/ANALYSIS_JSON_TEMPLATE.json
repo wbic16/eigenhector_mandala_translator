@@ -5,7 +5,7 @@
         "analysis_date": "YYYY-MM-DD",
         "agent_version": "Agent Name/Version",
         "source_url": "https://example.com",
-        "local_corpus_path": "mystic_corpus/example_corpus/docs"
+        "local_corpus_path": "reports/mystic_corpus/example_corpus/docs"
     },
     "executive_summary": "High-level synthesis of the corpus, its main themes, and unique qualities.",
     "major_recurring_metaphors": [
@@ -17,7 +17,7 @@
             "occurrences": [
                 {
                     "quote": "Direct quote from the text.",
-                    "source_document": "mystic_corpus/corpus_name/docs/filename.md"
+                    "source_document": "reports/mystic_corpus/corpus_name/docs/filename.md"
                 }
             ]
         }
@@ -35,7 +35,7 @@
             "definition": "Definition based on usage in the corpus.",
             "occurrences": [
                 {
-                    "source_document": "mystic_corpus/corpus_name/docs/filename.md"
+                    "source_document": "reports/mystic_corpus/corpus_name/docs/filename.md"
                 }
             ]
         }

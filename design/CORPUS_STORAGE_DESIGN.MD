@@ -4,9 +4,11 @@
 This document defines the storage architecture for the "Mandala" system. A "Mandala" is a collection of documents (corpus) organized by user. The system is designed to be cross-platform (Windows, Mac, Linux) and supports fast retrieval and indexing.
 
 ## Storage Location
-All data is stored in a central `mystic_corpus` directory.
-- **Windows:** `%USERPROFILE%\Documents\mystic_corpus\`
-- **Linux/Mac:** `~/Documents/mystic_corpus/`
+All data is stored in the project's `reports/mystic_corpus` directory.
+- **Project Root:** `reports/mystic_corpus/`
+
+> [!IMPORTANT]
+> **Git Protection**: The `reports/` directory is intended for local data and generated artifacts. It **must always be excluded from version control** via `.gitignore` to prevent leaking large datasets or user-specific corpus data into the repository.
 
 ## User Registry (`corpus_registry.json`)
 Located at `mystic_corpus/corpus_registry.json`. This file maps short user aliases to their corpus source and metadata.
@@ -68,7 +70,7 @@ Maps File IDs to Source Metadata (URL, Title, Date).
     "url": "https://...",
     "title": "Article Title",
     "date": "2023-01-01",
-    "path": "mystic_corpus/ari/docs/00001.md"
+    "path": "reports/mystic_corpus/ari/docs/00001.md"
   }
 }
 ```

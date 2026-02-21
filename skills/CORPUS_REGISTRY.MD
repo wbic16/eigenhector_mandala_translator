@@ -10,8 +10,10 @@ The `corpus_registry.json` file is the central database for all user aliases and
 ## Location
 
 The registry is located at the root of the corpus storage directory:
-- **Windows**: `%USERPROFILE%\Documents\mystic_corpus\corpus_registry.json`
-- **Linux/macOS**: `~/Documents/mystic_corpus/corpus_registry.json`
+- **Project Location**: `reports/mystic_corpus/corpus_registry.json`
+
+> [!WARNING]
+> Since this file is located within the `reports/` directory, it is ignored by Git by default. This is intentional to protect sensitive source URLs and local configuration.
 
 ## Schema
 

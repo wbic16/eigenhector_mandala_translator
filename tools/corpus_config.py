@@ -9,10 +9,9 @@ def get_base_dir(storage_root=None):
     if storage_root:
         return storage_root
     
-    if os.name == 'nt':
-        return os.path.join(os.environ['USERPROFILE'], 'Documents', 'mystic_corpus')
-    else:
-        return os.path.join(os.path.expanduser('~'), 'Documents', 'mystic_corpus')
+    # Default to reports/mystic_corpus in the project root
+    project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    return os.path.join(project_root, 'reports', 'mystic_corpus')
 
 def get_registry_path(base_dir=None):
     """
