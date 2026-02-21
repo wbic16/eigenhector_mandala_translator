@@ -1,4 +1,5 @@
 import os
+import time
 import argparse
 import requests
 import json
@@ -8,6 +9,7 @@ from bs4 import BeautifulSoup
 from urllib.parse import urljoin, urlparse
 import unicodedata
 from markdownify import markdownify as md
+import corpus_config
 
 class CorpusManager:
     def __init__(self, corpus_name, storage_root=None):
@@ -15,11 +17,7 @@ class CorpusManager:
         if storage_root:
              self.base_dir = storage_root
         else:
-            # Default to User Documents
-            if os.name == 'nt':
-                self.base_dir = os.path.join(os.environ['USERPROFILE'], 'Documents', 'mystic_corpus')
-            else:
-                self.base_dir = os.path.join(os.path.expanduser('~'), 'Documents', 'mystic_corpus')
+            self.base_dir = corpus_config.get_base_dir()
         
         self.corpus_dir = os.path.join(self.base_dir, self.corpus_name)
         self.docs_dir = os.path.join(self.corpus_dir, 'docs')
@@ -113,6 +111,7 @@ class CorpusFetcher:
         self.manager = manager
 
     def fetch_url(self, url, timeout=10, max_size=10*1024*1024):
+        time.sleep(2)
         try:
             # Stream response to check size
             with requests.get(url, headers={'User-Agent': 'Mozilla/5.0'}, timeout=timeout, stream=True) as response:
@@ -237,6 +236,7 @@ class CorpusFetcher:
             return current_count
 
         try:
+            time.sleep(2)
             response = requests.get(api_url, headers={'User-Agent': 'CorpusFetcher'})
             if response.status_code != 200:
                 print(f"Error accessing GitHub API: {response.status_code}")
@@ -314,12 +314,9 @@ def load_registry(storage_root=None):
     if storage_root:
         base_dir = storage_root
     else:
-        if os.name == 'nt':
-            base_dir = os.path.join(os.environ['USERPROFILE'], 'Documents', 'mystic_corpus')
-        else:
-            base_dir = os.path.join(os.path.expanduser('~'), 'Documents', 'mystic_corpus')
+        base_dir = corpus_config.get_base_dir()
             
-    registry_path = os.path.join(base_dir, 'corpus_registry.json')
+    registry_path = corpus_config.get_registry_path(base_dir)
     if os.path.exists(registry_path):
         with open(registry_path, 'r', encoding='utf-8') as f:
             return json.load(f)

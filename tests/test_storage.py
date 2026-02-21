@@ -22,25 +22,10 @@ class TestStorage(unittest.TestCase):
         # Remove the directory after the test
         shutil.rmtree(self.test_dir)
 
-    def test_default_storage_path_windows(self):
-        """Test default storage path on Windows."""
-        with patch('platform.system', return_value='Windows'):
-            with patch.dict(os.environ, {'USERPROFILE': 'C:\\Users\\TestUser'}):
-                # Placeholder for the actual function invoke
-                # expected_path = 'C:\\Users\\TestUser\\Documents\\mystic_corpus\\'
-                # actual_path = get_default_storage_path()
-                # self.assertEqual(actual_path, expected_path)
-                pass
-
-    def test_default_storage_path_linux(self):
-        """Test default storage path on Linux."""
-        with patch('platform.system', return_value='Linux'):
-            with patch.dict(os.environ, {'HOME': '/home/testuser'}):
-                # Placeholder for the actual function invoke
-                # expected_path = '/home/testuser/Documents/mystic_corpus/'
-                # actual_path = get_default_storage_path()
-                # self.assertEqual(actual_path, expected_path)
-                pass
+    def test_default_storage_path(self):
+        """Test default storage path."""
+        # expected_path should be reports/mystic_corpus relative to project root
+        pass
                 
     def test_corpus_directory_creation(self):
         """Test that corpus directories are created correctly."""

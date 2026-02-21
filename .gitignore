@@ -40,3 +40,6 @@ test_output.txt
 
 # Jupyter Notebook
 .ipynb_checkpoints
+
+# Reports (Always gitignored)
+reports/

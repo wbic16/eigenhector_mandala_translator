@@ -31,7 +31,7 @@ This document outlines the design for a tool to fetch and preprocess text articl
 ```bash
 fetch-corpus --source "https://eigenhector.substack.com/sitemap.xml" --type substack --limit 10 --name eigenhector
 # Automatically filters for /p/ links by default for Substack type
-# Stores in ~/Documents/mystic_corpus/eigenhector/
+# Stores in reports/mystic_corpus/eigenhector/
 ```
 
 ### Link Collection Example
@@ -40,7 +40,7 @@ fetch-corpus --source "https://eigenhector.substack.com/sitemap.xml" --type subs
 **Command:**
 ```bash
 fetch-corpus --source "https://smoothbrains.net/posts/index.html" --type html-links --limit 5 --name smoothbrains
-# Stores in ~/Documents/mystic_corpus/smoothbrains/
+# Stores in reports/mystic_corpus/smoothbrains/
 # Fetches only .md files
 ```
 
@@ -50,7 +50,7 @@ fetch-corpus --source "https://smoothbrains.net/posts/index.html" --type html-li
 **Command:**
 ```bash
 fetch-corpus --source "https://github.com/wbic16/eigenhector_mandala_translator" --type github --limit 20 --name eigenhector_translator
-# Stores in ~/Documents/mystic_corpus/eigenhector_translator/
+# Stores in reports/mystic_corpus/eigenhector_translator/
 # Fetches only .md files
 ```
 
@@ -98,9 +98,8 @@ The generated Markdown files are the input for the process described in `skills/
 ## Storage & Deduplication
 
 ### Default Storage Location
-*   **Path:** User's documents directory under `mystic_corpus`.
-    *   **Windows:** `%USERPROFILE%\Documents\mystic_corpus\`
-    *   **Linux:** `~/Documents/mystic_corpus/`
+*   **Path:** Project root under `reports/mystic_corpus`.
+    *   **Project Root:** `reports/mystic_corpus/`
 *   **Structure:**
     *   `mystic_corpus/`
         *   `<corpus_name>/` (Subdirectory for the specific corpus)

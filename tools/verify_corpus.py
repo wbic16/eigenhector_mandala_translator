@@ -2,6 +2,7 @@ import os
 import argparse
 import json
 from datetime import datetime
+import corpus_config
 
 class CorpusVerifier:
     def __init__(self, corpus_name, storage_root=None):
@@ -9,11 +10,7 @@ class CorpusVerifier:
         if storage_root:
              self.base_dir = storage_root
         else:
-            # Default to User Documents
-            if os.name == 'nt':
-                self.base_dir = os.path.join(os.environ['USERPROFILE'], 'Documents', 'mystic_corpus')
-            else:
-                self.base_dir = os.path.join(os.path.expanduser('~'), 'Documents', 'mystic_corpus')
+            self.base_dir = corpus_config.get_base_dir()
         
         self.corpus_dir = os.path.join(self.base_dir, self.corpus_name)
         self.docs_dir = os.path.join(self.corpus_dir, 'docs')
@@ -99,12 +96,9 @@ def load_registry(storage_root=None):
     if storage_root:
         base_dir = storage_root
     else:
-        if os.name == 'nt':
-            base_dir = os.path.join(os.environ['USERPROFILE'], 'Documents', 'mystic_corpus')
-        else:
-            base_dir = os.path.join(os.path.expanduser('~'), 'Documents', 'mystic_corpus')
+        base_dir = corpus_config.get_base_dir()
             
-    registry_path = os.path.join(base_dir, 'corpus_registry.json')
+    registry_path = corpus_config.get_registry_path(base_dir)
     if os.path.exists(registry_path):
         with open(registry_path, 'r', encoding='utf-8') as f:
             return json.load(f)

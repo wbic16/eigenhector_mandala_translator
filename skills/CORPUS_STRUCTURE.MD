@@ -12,7 +12,7 @@ This document defines the standard file structure and data formats for the `myst
 The corpus storage is organized by **Corpus Name**.
 
 ```text
-mystic_corpus/
+reports/mystic_corpus/
 ├── corpus_registry.json        # Global registry of user aliases
 └── [corpus_name]/              # Directory for a specific corpus (e.g., 'eigenhector')
     ├── index.json              # Metadata index for all fetched documents
@@ -22,7 +22,9 @@ mystic_corpus/
         └── ...
 ```
 
-*   **`mystic_corpus/`**: The root directory, typically located in `~/Documents/` or `%USERPROFILE%\Documents\`.
+*   **`reports/mystic_corpus/`**: The root directory, located in the project's `reports/` folder.
+    - > [!IMPORTANT]
+    - > The `reports/` folder should always be added to `.gitignore`.
 *   **`[corpus_name]/`**: A dedicated folder for each corpus. The name usually matches the user alias or the `--name` argument used during fetching.
 *   **`docs/`**: Contains the Markdown files. Files are named sequentially using a 5-digit zero-padded ID (e.g., `00001.md`).
 
@@ -39,7 +41,7 @@ The `index.json` file contains an array of metadata objects, one for each fetche
     "title": "Article Title",
     "url": "https://example.com/article",
     "date": "2023-10-27",
-    "filepath": "path/to/mystic_corpus/corpus_name/docs/00001.md"
+    "filepath": "reports/mystic_corpus/corpus_name/docs/00001.md"
   }
 ]
 ```
