@@ -32,6 +32,7 @@ These skills focus on extracting meaningful insights and generating entities fro
 *   **[Corpus Analysis](CORPUS_ANALYSIS.MD)**: Guidelines for identifying recurring metaphors, emotional textures, and structural dimensions.
 *   **[Magitech Survey](MAGITECH_SURVEY.MD)**: Investigates the "Magitech" nature of beings and rates their rank.
 *   **[Hero Character Sheet](HERO_CHARACTER_SHEET.MD)**: Translates surveyed beings into balanced RPG-style character sheets.
+*   **[Companion Build Creation](COMPANION_BUILD_CREATION.MD)**: Methodology for translating mystic texts into structured iron-rank builds with lineage preservation.
 *   **[Realm Ethics](REALM_ETHICS.MD)**: Defines the philosophical and evolutionary trajectory (Ascension Paths) of a realm.
 *   **[Analysis JSON Template](ANALYSIS_JSON_TEMPLATE.json)**: The machine-readable schema for analysis output.
 
